@@ -1,3 +1,2 @@
-# itstep
-## Machine learning courses given at IT Step
-This repository contains all the material corresponding to the Machine learning courses I give at IT Step academy.
+# Machine learning courses at IT Step
+This repository contains all the material corresponding to the Machine learning courses I gave (or am giving) at IT Step academy.

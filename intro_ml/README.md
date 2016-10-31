@@ -3,7 +3,7 @@
 This folder contains all the material from the "Introduction to Machine Mearning" course I am currently giving at IT Step Academy. 
 
 This includes:
-- A general introduction to machine learning(lecture_1)
+- A general introduction to machine learning (lecture_1)
 - An introduction lab to Python programming
 - A lecture (lecture_2) and a lab session (lab_2) about **classification**
 - A lecture (lecture_3) and a lab session (lab_3) about **regression** (TBD)

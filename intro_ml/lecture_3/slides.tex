@@ -104,9 +104,12 @@ Principal components:
 \begin{frame}{Linear regression with ordinary least-squares}
 \textbf{Linear} regression: Estimate $y$ as a \textbf{linear} function of $x$:
 $$ \hat{y} = w^T x$$
+\vfill
+\textbf{Least squares}: Penalty (loss) is a \textbf{quadratic} function
+$$ \ell \left( \hat{y}, y \right) = \left( \hat{y} - y\right)^2$$
 \end{frame}
 
-\begin{frame}
+\begin{frame}%
 
 \begin{table}
 \centering
@@ -123,12 +126,13 @@ living area (m$^2$) &  \textbf{\# bedrooms} & price (1000's euros) \\\hline
 
 \end{frame}
 
-\begin{frame}{Variable standardisation}
+\begin{frame}{Variable standardization}
 Variables have various magnitudes. Example:
 \begin{itemize}
 	\item Living area: Up to a few hundreds m$^2$
 	\item Price: Up to a few 100 000s BGN (and even more)
 \end{itemize}
+This can be an issue when training a regression model.
 \vfill
 \pause
 It is possible to calculate the \textbf{standard score} z of a variable x
@@ -144,8 +148,11 @@ Another option: Scale between 0 and 1
 $$ z = \dfrac{x - \min}{\max - \min}$$
 \end{frame}
 
-\begin{frame}{Overfitting and underfitting }
-$$ y = \cos \left( \dfrac{3\pi}{2} x \right) + \text{noise}$$
+\begin{frame}{Overfitting and underfitting}
+Illustration on a generated example: Try to fit the function
+$$ y = f(x) = \cos \left( \dfrac{3\pi}{2} x \right) + \text{noise}$$
+for $x \in [0, 1]$, with a polynomial regression
+\pause
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{images/over_under_fitting.png}
@@ -153,11 +160,50 @@ $$ y = \cos \left( \dfrac{3\pi}{2} x \right) + \text{noise}$$
 \end{frame}
 
 \begin{frame}{Parameter selection}
-Parameter selection plays a key role in the regression performance.
+As for classification models, parameter selection plays a key role in the regression performance:
+\begin{itemize}
+	\item Degree of the polynomial
+	\item Regularization parameter
+\end{itemize}
+\vfill
+\pause
+Optimal parameters can be chosen with cross-validation over a grid:
+\pause
+\begin{itemize}
+	\item Split the data into train/test
+\pause
+	\item Choose a degree $d \in \{ 1,  \dots, 20\}$
+\pause
+	\item Train on the train set with this degree
+\pause
+	\item Test the model on the test set
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Fitting a distribution}
+$$ \hat{y} = f(x) =  A e^{\dfrac{\left( x - x_0 \right)^2}{2\sigma^2}}$$
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/fitted_gaussian.png}
+\end{figure}
+\end{frame}
 
+\begin{frame}{Alternatives to least squares}
+It is possible to use a different loss function $\ell$. Remember, we had
+$$ \ell \left( \hat{y}, y \right) = \left( \hat{y} - y\right)^2$$
+\vfill
+\pause
+We can use \textbf{support vector machines for regression} (SVR):
+\begin{itemize}
+	\item If \textbf{within the margin} (\textit{i.e.} $ - \epsilon \leq \hat{y} - y \leq + \epsilon$) then \textbf{no penalty}
+	\item linear or quadratic \textbf{penalty outside the margin}
+\end{itemize}
+(see flip-chart for illustration) 
+\vfill
+This loss function is called $\epsilon$-insensitive.
+\pause
+\vfill
+\textbf{Note}: We can use kernels as for SVM
 \end{frame}
 
 \begin{frame}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.7.30)  3 NOV 2016 07:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.7.30)  3 NOV 2016 07:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -929,18 +929,18 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
+LaTeX Font Info:    Try loading font information for U+msa on input line 35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+LaTeX Font Info:    Try loading font information for U+msb on input line 35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 38.
+line 35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
@@ -950,22 +950,22 @@ thkerncmss.
 
 ] [3
 
-] <images/2d_regression.png, id=37, 438.63875pt x 290.08376pt>
+] [4
+
+] <images/2d_regression.png, id=42, 438.63875pt x 290.08376pt>
 File: images/2d_regression.png Graphic file (type png)
 
 <use images/2d_regression.png>
-Package pdftex.def Info: images/2d_regression.png used on input line 66.
+Package pdftex.def Info: images/2d_regression.png used on input line 75.
 (pdftex.def)             Requested size: 215.10196pt x 142.25293pt.
- [4
+ [5
 
- <./images/2d_regression.png>] [5
+ <./images/2d_regression.png>] [6
 
-] [6
+] [7
 
 ]
-[7
-
-] [8
+[8
 
 ] [9
 
@@ -973,21 +973,25 @@ Package pdftex.def Info: images/2d_regression.png used on input line 66.
 
 ] [11
 
+] [12
+
+] [13
+
 ]
-<images/over_under_fitting.png, id=86, 845.40843pt x 355.3275pt>
+<images/over_under_fitting.png, id=97, 845.40843pt x 355.3275pt>
 File: images/over_under_fitting.png Graphic file (type png)
 
 <use images/over_under_fitting.png>
-Package pdftex.def Info: images/over_under_fitting.png used on input line 140.
+Package pdftex.def Info: images/over_under_fitting.png used on input line 153.
 (pdftex.def)             Requested size: 307.28987pt x 129.15398pt.
- [12
+ [14
 
  <./images/over_under_fitting.png>]
-[13
+[15
 
-] [14
+] [16
 
-] [15
+] [17
 
 ]
 \tf@nav=\write6
@@ -999,11 +1003,11 @@ Package pdftex.def Info: images/over_under_fitting.png used on input line 140.
 \tf@snm=\write8
 \openout8 = `slides.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 156.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 156.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 169.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
  (build/slides.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 156.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 156.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
 Package rerunfilecheck Info: File `slides.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
@@ -1011,13 +1015,13 @@ Package rerunfilecheck Info: File `slides.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 156.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 169.
  ) 
 Here is how much of TeX's memory you used:
- 17239 strings out of 493029
- 327457 string characters out of 6136234
+ 17249 strings out of 493029
+ 327666 string characters out of 6136234
  416588 words of memory out of 5000000
- 20325 multiletter control sequences out of 15000+600000
+ 20331 multiletter control sequences out of 15000+600000
  12859 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,11n,55p,405b,396s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1034,10 +1038,10 @@ amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
 bols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
 ols/msam7.pfb>
-Output written on build/slides.pdf (15 pages, 194451 bytes).
+Output written on build/slides.pdf (17 pages, 196876 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
+ 172 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

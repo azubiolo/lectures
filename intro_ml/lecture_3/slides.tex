@@ -25,6 +25,15 @@
   \titlepage
 \end{frame}
 
+\begin{frame}{Before we start}
+Would you be interested in a more advanced course? I can propose 
+\begin{itemize}
+	\item Machine learning from scratch (how to implement an ML algorithm with no library)
+	\item A more advanced version of this course (with more theoretical technical details)
+	\item Large-scale machine learning
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Regression in Machine Learning}
 This lecture is about regression in Machine learning.
 \vfill
@@ -33,7 +42,7 @@ This lecture is about regression in Machine learning.
 \textbf{Example}:
 \begin{itemize}
 	\item \textbf{Price estimation}: $y =$ price (\textit{e.g.} 50000 BGN for a house)
-	\item \textbf{Predicting the future} (\textit{e.g.} weather forecast): $y =$ temperature
+	\item \textbf{Predicting the future} (\textit{e.g.} weather forecast): $y =$ temperature or amount of rain 
 \end{itemize}
 \end{frame}
 
@@ -129,10 +138,14 @@ where
 	\item $\mu$ is the mean of the variable
 	\item $\sigma$ is its standard deviation
 \end{itemize}
+\pause
+\vfill
+Another option: Scale between 0 and 1
+$$ z = \dfrac{x - \min}{\max - \min}$$
 \end{frame}
 
 \begin{frame}{Overfitting and underfitting }
-$$ y = \cos \left( \dfrac{3\pi}{2} x \right) $$
+$$ y = \cos \left( \dfrac{3\pi}{2} x \right) + \text{noise}$$
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{images/over_under_fitting.png}
@@ -140,7 +153,7 @@ $$ y = \cos \left( \dfrac{3\pi}{2} x \right) $$
 \end{frame}
 
 \begin{frame}{Parameter selection}
-Parameter selection plays a huge role in the regression performance.
+Parameter selection plays a key role in the regression performance.
 \end{frame}
 
 \begin{frame}{Fitting a distribution}

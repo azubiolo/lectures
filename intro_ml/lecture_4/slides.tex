@@ -13,6 +13,8 @@
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
 \title[Classification]{Introduction to Machine Learning}
 \subtitle{Lecture 4: Clustering}
 \author{Alexis Zubiolo\newline\texttt{alexis.zubiolo@gmail.com}}
@@ -23,6 +25,23 @@
 
 \begin{frame}
   \titlepage
+\end{frame}
+
+\begin{frame}{Clustering}
+Clustering 
+\end{frame}
+
+\begin{frame}{$k$-means}
+
+We look for a partition $S = \left\{ S_1, S_2, \dots, S_k\right\}$ minimizing the within-cluster sum of squares.
+\begin{equation*}
+\arg \min_S \sum_{i = 1}^{k} \sum_{x \in S_i} \norm{x - \mu_i}_2^2
+\end{equation*}
+where 
+\begin{equation*}
+\mu_i = \dfrac{1}{|S_i|} \sum_{x \in S_i} x
+\end{equation*}
+is the mean of points in $S_i$
 \end{frame}
 
 \end{document}

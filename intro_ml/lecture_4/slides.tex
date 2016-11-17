@@ -49,11 +49,19 @@ Main \textbf{challenges}:
 \vfill
 \textbf{Web}: Recognize communities of users
 \vfill
-\textbf{Marketing}: Define groups of users with similar behavior/interests to target them more efficiently
+\textbf{Marketing}: Define groups of customers with similar behavior/interests to target them more efficiently
 \vfill
 \textbf{Image processing}: Segment images (\textit{e.g.} segment different tissues in biomedical imaging)
 \vfill
-And sometimes, we just have no labels in our data, so clustering can be a good first approach to tackle some problems.
+And sometimes, we just have no label in our data, so clustering can be a good first approach to tackle some problems.
+\end{frame}
+
+\begin{frame}{Practical example: Image segmentation}
+\centering
+\begin{figure}
+\includegraphics[width=\textwidth]{images/segmentation.jpg}
+\end{figure}
+Very basic example of image segmentation with clustering, just based on the intensity level.
 \end{frame}
 
 \begin{frame}{Course outline}
@@ -77,6 +85,7 @@ We look for a partition $S = \left\{ S_1, S_2, \dots, S_k\right\}$ minimizing th
 \begin{equation*}
 \min_S \sum_{i = 1}^{k} \sum_{x \in S_i} \norm{x - \mu_i}_2^2
 \end{equation*}
+\pause
 where 
 \begin{equation*}
 \mu_i = \dfrac{1}{|S_i|} \sum_{x \in S_i} x
@@ -124,26 +133,6 @@ Unfortunately, no miracle strategy for Q1. A common strategy:
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\begin{center}
-\begin{tikzpicture}
-  \begin{axis}[
-        width=\linewidth,
-        title={$k=2$},
-        hide axis,
-        xmin=0,xmax=10,ymin=0,ymax=100,
-        xlabel={$x_1$},
-        ylabel={$x_2$}
-        ]
-       \node[text=blue,font=\sffamily\bfseries,scale=2] at (3,30) {x};
-       \addplot+[y filter/.expression={y+10},only marks,mark=*,samples=50,domain=1:5] {40*rnd};
-       \node[text=red,font=\sffamily\bfseries,scale=2] at (7,70){x};
-       \addplot+[y filter/.expression={y+50},only marks,mark=*,mark options={fill=red},samples=50,domain=5:9] {40*rnd};
-  \end{axis}
-\end{tikzpicture}
-\end{center}
-\end{frame}
-
 \begin{frame}{Speeding up $k$-means}
 Each $k$-means iteration is done over all the points in the dataset. This can be computationally expensive, especially if
 \begin{itemize}
@@ -163,9 +152,9 @@ What to do to \textbf{speed up the process}?
 \begin{frame}{Number of clusters}
 In some applications, you know how many clusters you want. In this case, $k$ is \textbf{easy to set}.
 \vfill
-In other applications, we don't know the optimal number of classes we want. Ideally, we would like $k$ to be selected automatically.
+In other applications, we don't know the optimal number of classes we want. Ideally, we would like $k$ to be \textbf{selected automatically}.
 \vfill
-There is always some ambiguity in selection the \textit{optimal} number of clusters. This is normal: When doing unsupervised learning, there is necessarily some inherent subjectivity in the labeling process!
+There is always \textbf{some ambiguity} in selecting the \textit{optimal} number of clusters. This is normal: When doing unsupervised learning, there is necessarily some \textbf{inherent subjectivity} in the labeling process!
 \end{frame}
 
 \begin{frame}{Number of clusters}
@@ -179,21 +168,29 @@ And apply the \textbf{Elbow method}.
 Note that this is not a miracle solution.
 \end{frame}
 
+\begin{frame}{The elbow rule/method}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/elbow.png}
+\end{figure}
+\end{frame}
+
 \begin{frame}{$k$-means: concluding remarks}
 Pros:
 \begin{itemize}
-	\item 
-	\item 
+	\item Fast, and can be faster with mini-batches
+	\item Intuitive and easy to implement
 \end{itemize}
 \vfill
 \pause
 Cons:
 \begin{itemize}
-	\item 
+	\item Might not always give the same solution
+	\item Number of clusters $k$
 \end{itemize}
 \vfill
 \pause
-We can use different metrics to link clusters and various linkage criteria.
+We can use different metrics to link clusters and various linkage criteria. (More on this later.)
 \end{frame}
 
 \begin{frame}
@@ -225,6 +222,7 @@ We can use different metrics to link clusters and various linkage criteria.
 \node (cd) at (0,1) {};
 \node (cde) at (1,2) {};
 \node (all) at (-1.5,5) {};
+\draw[->] (-7,0) -- node[above]{distance} (-7,6);
 
 \pause
 \draw  (c) |- (cd.center);
@@ -244,8 +242,6 @@ We can use different metrics to link clusters and various linkage criteria.
 \pause
 \draw[dashed, thick, blue] (-6.5,3.5) -- (+2.5,+3.5);
 \pause
-\draw[->] (-7,0) -- node[above]{distance} (-7,6);
-\pause
 \draw[<-] (+3,0) -- node[below]{number of clusters} (+3,6);
 \end{tikzpicture}
 \vfill
@@ -263,7 +259,7 @@ Pros:
 \pause
 Cons:
 \begin{itemize}
-	\item Similarity matrix: need to compute the distances between all pairs of points in the dataset
+	\item Similarity matrix (need to compute the distances between all pairs of points in the dataset): Does not scale well with the number of points!
 \end{itemize}
 \vfill
 \pause
@@ -274,7 +270,7 @@ Top-down approach also possible.
 \end{frame}
 
 \begin{frame}{Conclusion}
-Clustering methods create groups of unlabeled points.
+Clustering methods create groups within a set of unlabeled points.
 \vfill
 \pause
 They typically rely on:

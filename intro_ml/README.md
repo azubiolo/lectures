@@ -10,3 +10,6 @@ This includes:
 - A lecture (lecture_4) and a lab session (lab_4) about **clustering**
 - A lecture/lab (lecture_5) about model evaluation and selection (TBD)
 - A conclusion to the course (lecture_6) (TBD)
+
+A few extra links for those who are looking for extra material:
+- https://elitedatascience.com/learn-machine-learning

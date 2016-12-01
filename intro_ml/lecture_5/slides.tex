@@ -56,11 +56,18 @@ Recall from lecture 3:
 \end{figure}
 \end{frame}
 
+\begin{frame}{Reminder from lecture 2: overfitting}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{images/overfitting.png}
+\end{figure}
+\end{frame}
+
 \begin{frame}
 Course outline:
 \begin{itemize}
 	\item Evaluation metrics, what they mean
-	\item How/when/why yo apply them
+	\item How to apply them
 \end{itemize}
 \end{frame}
 
@@ -73,11 +80,9 @@ Course outline:
 \begin{frame}{Accuracy}
 Accuracy is the most natural classification evaluation:
 $$ \text{accuracy} = \dfrac{\# \text{good classifications}}{\# \text{instances}}$$
-However, it has many limitations:
-\begin{itemize}
-	\item Misleading when classes are imbalanced
-	\item ...
-\end{itemize}
+\vfill
+\pause
+However, it can be \textbf{misleading} when classes are \textbf{imbalanced}
 \end{frame}
 
 \begin{frame}{Confusion matrix}
@@ -120,12 +125,36 @@ Possibility to add a weight to the loss!
 \end{figure}
 \end{frame}
 
-\begin{frame}{Precision, recall}
-
+\begin{frame}{Precision, recall, TPR, FPR}
+\textbf{Precision} \& \textbf{recall} are 2 commonly used metrics: 
+\vfill
+\pause
+$$ \text{precision} = \dfrac{\text{TP}}{\text{TP + FP}} $$
+\vfill
+\pause
+True positive rate (TPR or recall or sensitivity):
+$$ \text{recall} = \text{TPR} = \dfrac{\text{TP}}{\text{P}} = \dfrac{\text{TP}}{\text{TP + FN}} $$
+\vfill
+\pause
+False positive rate (FPR):
+$$ \text{FPR} = \dfrac{\text{FP}}{\text{N}} = \dfrac{\text{FP}}{\text{FP + TN}} $$
 \end{frame}
 
 \begin{frame}{ROC curve}
+ROC curve is simply TPR as a function of FPR
+\vfill
+\pause
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{images/example_roc.png}
+\end{figure}
+\end{frame}
 
+\begin{frame}{Good and bad ROC curves}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{images/roc_quality.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}

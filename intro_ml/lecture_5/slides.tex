@@ -71,14 +71,24 @@ Course outline:
 \end{frame}
 
 \begin{frame}{Accuracy}
-
+Accuracy is the most natural classification evaluation:
+$$ \text{accuracy} = \dfrac{\# \text{good classifications}}{\# \text{instances}}$$
+However, it has many limitations:
+\begin{itemize}
+	\item Misleading when classes are imbalanced
+	\item ...
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Confusion matrix}
-
+Confusion matrix sums up all the $(y, \hat{y})$ possibilities in a matrix. Example for binary classification:
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{images/confusion_matrix.png}
+\end{figure}
 \end{frame}
 
-\begin{frame}{Machine learning loss}
+\begin{frame}{Machine learning losses}
 0-1 loss:
 $$ \ell \left( \hat{y}, y \right) = \1{\hat{y} = y}$$
 \vfill
@@ -88,18 +98,26 @@ $$ \ell \left( \hat{y}, y \right) = \left( \hat{y} - y\right)^2$$
 \vfill
 \pause
 Hinge loss:
-
+$$ \ell \left( \hat{y}, y \right) = \max\left(0, 1 - \hat{y} y\right)$$
 \vfill
 \pause
 Squared hinge loss:
-
+$$ \ell \left( \hat{y}, y \right) = \max\left(0, 1 - \hat{y} y\right)^2 $$
 \vfill
 \pause
 Log-loss:
+$$ \ell \left( \hat{y}, y \right) = \log \left( 1 + \exp ( - \hat{y}y )\right) $$
 \vfill
 \pause
-Possibility to add a weight the loss!
+Possibility to add a weight to the loss!
 
+\end{frame}
+
+\begin{frame}{Machine learning losses}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/losses.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Precision, recall}
@@ -192,7 +210,7 @@ Most classic way: a \textbf{grid-search}
 \end{frame}
 
 \begin{frame}{Grid search vs random search}
-Random search is a more and more popular alternative to grid search:
+Random search is a more and more popular alternative to grid search, especially in this case:
 \vfill
 \pause
 \begin{figure}
@@ -201,7 +219,10 @@ Random search is a more and more popular alternative to grid search:
 \end{figure}
 \pause
 \vfill
-In any case, you need to know upper/lower bounds on the parameters
+In any case, you need to guess upper/lower bounds on the parameters.
+\pause
+\vfill
+\textbf{Practical note}: Each parameter combination can be trained/tested separately =$>$ possibility to distribute the tasks
 \end{frame}
 
 \begin{frame}{Conclusion}

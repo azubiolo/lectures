@@ -1,0 +1,161 @@
+\documentclass{beamer}
+%\documentclass[aspectratio=169]{beamer}
+%
+\mode<presentation>
+{
+  \usetheme{default}      
+  \usecolortheme{default}
+  \usefonttheme{default} 
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\title[Classification]{Introduction to Machine Learning}
+\subtitle{Lecture 5: Model Selection and Validation}
+\author{Alexis Zubiolo\newline\texttt{alexis.zubiolo@gmail.com}}
+\institute{Data Science Team Lead @ Adcash}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+\textbf{Shameless advertisement}: There will be a more advanced course starting in January 2017!
+\vfill
+More info:
+\begin{center}
+http://itstep.bg/news-bg/kurs-machine-learning-from-scratch/
+\end{center}
+\end{frame}
+
+\begin{frame}{Introduction}
+Model evaluation is a key component of a machine learning pipeline.
+\pause
+\vfill
+It makes it possible to chose a set of hyperparameters so that
+\begin{itemize}
+	\item The model is accurate enough
+	\item The model generalizes well (\textit{i.e.} does not overfit)
+\end{itemize}
+\vfill
+\pause
+Recall from lecture 3:
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/over_under_fitting.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+Course outline:
+\begin{itemize}
+	\item Evaluation metrics, what they mean
+	\item How/when/why yo apply them
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Huge{Evaluation metrics}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Huge{Applying evaluation metrics}
+\end{center}
+\end{frame}
+
+\begin{frame}{Train-test split}
+Reminder: ML algorithms (classification/regression) often rely on \textbf{many parameters}. How to \textbf{tune} them properly given a dataset?
+\vfill
+\pause
+The most commonly used principle is the train-test split:
+\begin{itemize}
+	\item \textbf{Split the data} into a training set and a test set
+	\item \textbf{Train} on the training set
+	\item \textbf{Test} on the test set
+\end{itemize}
+\vfill
+\pause
+This is often referred to as \textbf{cross-validation}.
+\end{frame}
+
+\begin{frame}{Cross-validation}
+Standard technique: $k$-fold cross-validation
+\begin{itemize}
+	\item Split the data into $k$ equally sized folds
+	\item Remove 1 fold (= test fold)
+	\item Train on the other folds
+	\item Test of the 
+\end{itemize}
+\vfill
+\pause
+Note: It is often advised to perform a \textbf{stratified} cross-validation, \textit{i.e.} each fold contains approximately the \textbf{same percentage} of samples of each target class \textbf{as the complete set}.
+\end{frame}
+
+\begin{frame}{Small dataset}
+Suppose you have dataset to train on. How to evaluate a classifier in this case?
+\vfill
+\pause
+$k$-fold cross-validation? Even with $k = 2$, it would make the training set even smaller and make it hard to fit a proper model.
+\vfill
+\pause
+Other option: \textbf{Leave-one-out} (LOO) cross-validation:
+\pause
+\begin{itemize}
+	\item \textbf{Remove 1 sample} from the dataset
+	\item Train on \textbf{all the other samples}
+	\item Test on the sample you've removed
+	\item \textbf{Evaluate} the prediction
+	\item Do it \textbf{for each sample of the dataset}
+	\item \textbf{Aggregate} the evaluations
+\end{itemize}
+\pause
+\vfill
+Remark: This could lead to many iterations even if the dataset is small.
+\end{frame}
+
+\begin{frame}{Parameter selection}
+One of the goals of model evaluation is to select a \textbf{good model}.
+\vfill
+\pause
+Hence we want to choose one (or several) hyperparameters. How do we do?
+\vfill
+\pause
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/random_search.png}
+\end{figure}
+\pause
+\vfill
+In any case, you need to know upper/lower bounds on the parameters
+\end{frame}
+
+\begin{frame}{Conclusion}
+There are several ways to evaluate a model depending on
+\begin{itemize}
+	\item \textbf{Your data}
+	\item \textbf{What you value} in your application
+\end{itemize}
+\vfill
+\pause
+Think about this before applying a \textbf{random algorithm} and evaluating it with a \textbf{random metric}!
+\end{frame}
+
+\begin{frame}
+	\center
+	\huge{Thank you! Questions?}
+\end{frame}
+
+\end{document}

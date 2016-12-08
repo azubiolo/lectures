@@ -1,0 +1,160 @@
+\documentclass{beamer}
+%\documentclass[aspectratio=169]{beamer}
+%
+\mode<presentation>
+{
+  \usetheme{default}      
+  \usecolortheme{default}
+  \usefonttheme{default} 
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{bbm}
+
+\newcommand{\1}[1]{\mathbbm{1}\left[#1\right]}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\title[Classification]{Introduction to Machine Learning}
+\subtitle{Lecture 6: Conclusion}
+\author{Alexis Zubiolo\newline\texttt{alexis.zubiolo@gmail.com}}
+\institute{Data Science Team Lead @ Adcash}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+This lecture includes:
+\begin{itemize}
+ \item A \textbf{model selection} lab
+ \item A few aspects of machine learning we have not mentionned
+ \begin{itemize}
+ 	\item \textbf{Feature engineering}
+ 	\item \textbf{Dimensionality reduction}
+ \end{itemize}
+ \item Feedback and final Q\&A
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\Huge{Dimensionality reduction}
+\end{center}
+\end{frame}
+
+\begin{frame}{Dimensionality reduction}
+When working on real-world datasets, the data is not always clean and ready to use.
+\vfill
+\pause
+For example, in some datasets, one may encounter the following issues:
+\begin{itemize}
+	\item There are too many samples
+	\item There are too many features
+	\item Some of the features bring no information
+\end{itemize}
+\vfill
+\pause
+Hence, there is a need to pre-process the data.
+\end{frame}
+
+\begin{frame}{Dimensionality reduction}
+In case there are too many samples, a simple solution is to apply subsampling, \textit{e.g.} just take into account 10\% of the samples.
+\begin{itemize}
+	\item Recall the mini-batch $k$-means
+	\item Be careful with the \textbf{class balance}
+	\begin{itemize}
+		\item Imbalanced classes: \textbf{subsample the majority class}
+		\item Little to no imbalance: \textbf{Stratified sampling}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Dimensionality reduction with PCA}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\Huge{Feature engineering}
+\end{center}
+\end{frame}
+
+\begin{frame}{Feature engineering}
+Feature engineering is a key component of machine learning.
+\vfill
+\pause
+Sometimes, on the same data, most algorithm would give roughly the same accuracy (or any other metric). In this case, feature engineering could be the best solution to improve classification/regression results.
+\vfill
+\pause 
+Feature engineering is often \textbf{data-dependent}: You won't use the same features from text data and from images or videos.
+\end{frame}
+
+\begin{frame}{Feature engineering in text analysis: TF-IDF}
+There are several challenges when dealing with text data:
+\begin{itemize}
+	\item Mining text can lead to a huge amount of data to process
+	\item Not all the data is relevant 
+	\item Texts can be of different size
+	\item \ldots
+\end{itemize}
+\pause
+\vfill
+Hence, there is \textbf{a need to preprocess} it before giving it to any ML algorithm.
+\end{frame}
+
+\begin{frame}{Feature analysis in image processing}
+In images, we often want to detect interest points such as \textbf{edges} and \textbf{corners}.
+\vfill
+\pause
+SIFT = Scale-Invariant Feature Transform. Invariance to:
+\begin{itemize}
+	\item Rotation
+	\item Difference scales
+	\item Affine transformation
+	\item (Affine) intensity change
+\end{itemize}
+\vfill
+\pause
+\textbf{SIFT is patented} and cannot be used in all situations: There exist alternatives based on the same idea such as SURF (Speeded-Up Robust Features)
+\end{frame}
+
+\begin{frame}{SIFT applications}
+SIFT has other applications, such as aligning images, creating panoramas, video tracking, \ldots
+\pause
+\vfill
+YouTube video example
+\pause
+\vfill
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/sift_panorama_matching.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{SIFT illustration}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/sift_panorama_result.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Conclusion of the conclusion}
+
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\huge{Thank you! Questions? \\ Any feedback?}
+\end{center}
+\end{frame}
+
+\end{document}

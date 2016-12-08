@@ -33,7 +33,7 @@
 This lecture includes:
 \begin{itemize}
  \item A \textbf{model selection} lab
- \item A few aspects of machine learning we have not mentionned
+ \item A few aspects of machine learning we have not mentioned
  \begin{itemize}
  	\item \textbf{Feature engineering}
  	\item \textbf{Dimensionality reduction}
@@ -50,10 +50,10 @@ This lecture includes:
 \end{frame}
 
 \begin{frame}{Dimensionality reduction}
-When working on real-world datasets, the data is not always clean and ready to use.
+When working on real-world data sets, the data is not always clean and ready to use.
 \vfill
 \pause
-For example, in some datasets, one may encounter the following issues:
+For example, in some data sets, one may encounter the following issues:
 \begin{itemize}
 	\item There are too many samples
 	\item There are too many features
@@ -74,12 +74,32 @@ In case there are too many samples, a simple solution is to apply subsampling, \
 		\item Little to no imbalance: \textbf{Stratified sampling}
 	\end{itemize}
 \end{itemize}
+\vfill
+\pause
+It is also important to use common sense and expert knowledge when possible:
+\begin{itemize}
+	\item Some variables might be intuitively meaningless to solve the ML problem
+	\item 
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Dimensionality reduction with PCA}
-
+PCA = Principal Component Analysis
+\vfill
+\pause
+Rough idea:
+\begin{itemize}
+	\item Find high variance axes
+	\item Select the $k$ axes with the highest variances
+	\item Project the data on these axes
+\end{itemize}
+\vfill
+\pause
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/pca_illustration.png}
+\end{figure}
 \end{frame}
-
 
 \begin{frame}
 \begin{center}
@@ -114,7 +134,7 @@ Hence, there is \textbf{a need to preprocess} it before giving it to any ML algo
 In images, we often want to detect interest points such as \textbf{edges} and \textbf{corners}.
 \vfill
 \pause
-SIFT = Scale-Invariant Feature Transform. Invariance to:
+SIFT = Scale-Invariant Feature Transform. Invariant to:
 \begin{itemize}
 	\item Rotation
 	\item Difference scales
@@ -124,6 +144,60 @@ SIFT = Scale-Invariant Feature Transform. Invariance to:
 \vfill
 \pause
 \textbf{SIFT is patented} and cannot be used in all situations: There exist alternatives based on the same idea such as SURF (Speeded-Up Robust Features)
+\end{frame}
+
+\begin{frame}{SIFT algorithm}
+Key steps:
+\begin{itemize}
+	\item Detect extrema at different scale by difference of gaussians
+	\item Detect interest points in the image
+	\item Assign orientations to create SIFT features
+\end{itemize}
+\end{frame}
+
+\begin{frame}{SIFT: Difference of Gaussians (DoG)}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{images/dog.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{SIFT: Extrema detection}
+Interest points are among the local extrema in the $3\times3\times3$ neighborhood:
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{images/sift_extrema.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{SIFT: Extrema detection}
+Post-processing:
+\begin{itemize}
+	\item Remove low-contrast points
+	\item Remove points on the edges
+\end{itemize}
+\pause
+\vfill
+Before/after:
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{images/sift_all_points.png}~
+\includegraphics[width=0.5\textwidth]{images/sift_interest_points.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{SIFT: Orientation assignment}
+For each interest point, compute the orientation histogram:
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{images/sift_histogram.png}
+\end{figure}
+Do it for a neighborhood of the interest point:
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{images/sift_features.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}{SIFT applications}
@@ -139,7 +213,7 @@ YouTube video example
 \end{figure}
 \end{frame}
 
-\begin{frame}{SIFT illustration}
+\begin{frame}{SIFT illustration: Panorama}
 
 \begin{figure}
 \centering
@@ -148,7 +222,10 @@ YouTube video example
 \end{frame}
 
 \begin{frame}{Conclusion of the conclusion}
-
+ML has plenty of applications as we saw
+\pause
+\vfill
+There's \textbf{no general-purpose solution} (at least for now): It is important to \textbf{look at the data} and \textbf{adapt to the situation}.
 \end{frame}
 
 \begin{frame}

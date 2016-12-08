@@ -7,3 +7,4 @@ A few extra links:
  - A video tutorial on SIFT: https://www.youtube.com/watch?v=NPcMS49V5hg
  - A video tutorial on SURF: https://www.youtube.com/watch?v=oFVexhcltzE
  - An example of video tracking using SURF: https://www.youtube.com/watch?v=DqSYuxYzTVo
+ - Convolution illustrations: [Rectangle signal](http://mathworld.wolfram.com/images/gifs/convrect.gif) and [Gaussian signal](http://mathworld.wolfram.com/images/gifs/convgaus.gif)

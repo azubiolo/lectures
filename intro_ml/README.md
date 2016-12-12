@@ -1,4 +1,4 @@
-# Introduction to Machine Learning course
+# Introduction to Machine Learning
 
 This folder contains all the material from the "Introduction to Machine Learning" course I am currently giving at IT Step Academy. 
 

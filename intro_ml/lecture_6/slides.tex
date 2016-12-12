@@ -1,6 +1,5 @@
 \documentclass{beamer}
-%\documentclass[aspectratio=169]{beamer}
-%
+
 \mode<presentation>
 {
   \usetheme{default}      
@@ -79,7 +78,7 @@ In case there are too many samples, a simple solution is to apply subsampling, \
 It is also important to use common sense and expert knowledge when possible:
 \begin{itemize}
 	\item Some variables might be intuitively meaningless to solve the ML problem
-	\item 
+	\item ML often aims at mimicking/automatic a human logic
 \end{itemize}
 \end{frame}
 
@@ -117,7 +116,7 @@ Sometimes, on the same data, most algorithm would give roughly the same accuracy
 Feature engineering is often \textbf{data-dependent}: You won't use the same features from text data and from images or videos.
 \end{frame}
 
-\begin{frame}{Feature engineering in text analysis: TF-IDF}
+\begin{frame}{Feature engineering in text analysis}
 There are several challenges when dealing with text data:
 \begin{itemize}
 	\item Mining text can lead to a huge amount of data to process
@@ -128,6 +127,23 @@ There are several challenges when dealing with text data:
 \pause
 \vfill
 Hence, there is \textbf{a need to preprocess} it before giving it to any ML algorithm.
+\end{frame}
+
+\begin{frame}{Feature engineering in text analysis with TF-IDF}
+Given terms $t \in T$ and documents $d \in D$, we can define:
+$$ \text{TF}(t, d) = \text{Frequency of term } t \text{ in the document } d$$
+$$ \text{IDF}(t, D) = \log \left( \dfrac{|D|}{|\{ d \in D, t \in d \}|} \right)$$
+(there are alternative formulas)
+\pause
+$$ \text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \text{IDF}(t, D) $$
+\pause
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{images/document_stats.png}
+\end{figure}
+Exercice: Cf. Board
+\pause
+Note: We can go further, \textit{e.g.} with $n$-grams.
 \end{frame}
 
 \begin{frame}{Feature analysis in image processing}
@@ -226,6 +242,9 @@ ML has plenty of applications as we saw
 \pause
 \vfill
 There's \textbf{no general-purpose solution} (at least for now): It is important to \textbf{look at the data} and \textbf{adapt to the situation}.
+\pause
+\vfill
+There are plenty of libraries and examples available online... Don't hesitate to play with it!
 \end{frame}
 
 \begin{frame}

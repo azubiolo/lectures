@@ -101,20 +101,28 @@ Goal: Build algorithms that can
 \end{frame}
 
 \begin{frame}{Main components of machine learning}
-
 \vfill
-Mathematics
 \begin{itemize}
-	\item Linear algebra
-	\item Calculus
-	\item Numerical optimization
+\item Mathematics
+	\begin{itemize}
+		\item Linear algebra
+		\item Calculus
+		\item Numerical optimization
+	\end{itemize}
+\vfill
+\item Statistics, probability theory
+\vfill
+\item Computer science
 \end{itemize}
 \vfill
-Statistics, probability theory
+\pause
+In the course, we will review these aspects.
 \vfill
-Computer science
-\vfill
-I will assume some knowledge in computer science (= a language you are comfortable with). 
+\textbf{Prerequisites}: I will assume
+\begin{itemize}
+	\item Some knowledge in computer science (understand: at least \textbf{a language you are comfortable with})
+	\item You do not pass out when you see a mathematical formula
+\end{itemize}
 \vfill
 \end{frame}
 
@@ -224,6 +232,9 @@ Machine learning is a wide and growing field. It also includes:
 	\item Dimensionality reduction
 \pause 
 \vfill
+	\item Feature engineering
+\pause 
+\vfill
 	\item \ldots
 \end{itemize}
 \vfill
@@ -232,71 +243,72 @@ Machine learning is a wide and growing field. It also includes:
 \begin{frame}{The course}
 Goals:
 \begin{itemize}
-	\item Introduce \textbf{main concepts} of machine learning
-	\item \textbf{Implement} these concepts in Python (Scikit-learn)
+	\item Understand how a ML algorithm works
+	\item Being able to implement a ML algorithm
 \end{itemize}
 \vfill
 \pause 
 Practical information:
 \begin{itemize}
-	\item $\sim$ \textbf{10 90-min sessions}
-	\item Alternating between \textbf{lectures and lab sessions}
-	\item I will send you the slides + code after each course
+	\item $\sim$ \textbf{10 60-90 min sessions} on Thursdays 6:30pm
+	\item Starting with a few lectures about the main concepts followed by lab sessions where you implement these concepts
+	\item All material will be \textbf{available on GitHub}
+	\vfill
+	\begin{center}
+	\texttt{https://github.com/azubiolo/itstep}
+	\end{center}
+	\vfill
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Course outline}
+\begin{frame}{Course outline (attempt)}
 \vfill
 \begin{itemize}
-  \item \textbf{General introduction} to ML and Python (course + lab)
-  \item \textbf{Regression} model (course + lab)
-  \item \textbf{Classification} models (course + lab)
-  \item \textbf{Clustering} models (course + lab)
-  \item \textbf{Evaluation} methods
-  \item \textbf{General conclusion} + questions + remarks and feedback
+  \item \textbf{Mathematical background}
+  \begin{itemize}
+  	\item Linear algebra (vector, matrices and operations)
+  	\item Derivatives (gradient, Hessian matrix)
+  	\item Convexity
+  \end{itemize}
+  \item \textbf{Mathematical formalization in ML}
+  \begin{itemize}
+  	\item Linear regression (least squares)
+  	\item Logistic regression, support vector machines (SVM)
+  \end{itemize}
+  \item \textbf{Optimization in machine learning}
+  \begin{itemize}
+  	\item Gradient descent
+  	\item Stochastic vs. batch methods
+  	\item Second-order methods
+  \end{itemize}
+  \item \textbf{Model combination}
+  \item \textbf{Model validation}
 \end{itemize}
 \vfill
-\textbf{Note}: This is a first estimation. I will adapt to your needs.
+\textbf{Note}: This is a first estimation. I will adapt to your needs and how fast things go.
 \end{frame}
 
-\begin{frame}{Python and Scikit-learn}
-\vfill
-Why Python?
-\vfill
-\begin{itemize}
-	\item Intuitive, interpreted language
-	\item Cross-platform (Windows, MacOS, Linux)
-	\item An active open-source community
-	\item Easy-to-use ML libraries (e.g. Scikit-learn)
-\end{itemize}
-\vfill
-Let's see an example\ldots
-\vfill
-First lab session (about Python) next Thursday
-\vfill
-\end{frame}
-
-\begin{frame}{Want to work on your own computer?}
-\vfill
-Recommended setup:
-\vfill
-\begin{itemize}
-	\item \textbf{Anaconda} for Python \textbf{2.7}
-	\newline \texttt{https://docs.continuum.io/anaconda/install}
+\begin{frame}{About programming languages}
+For the practical sessions, I will be using python with jupyter.
 \begin{center}
-\includegraphics[width=0.75\textwidth]{images/anaconda_download.jpg}
+\texttt{http://jupyter.org/}
 \end{center}
-	\item \textbf{Spyder} text editor
-\end{itemize}
 \vfill
+If you prefer another language, feel free to use it. Remember that I assume some programming knowledge.
 \end{frame}
 
 \begin{frame}
 \vfill
 \centering
+\begin{huge}
 \huge{Thank you! Questions?}
 \vfill
-Don't forget to send me an email: \texttt{alexis.zubiolo@gmail.com}
+\texttt{alexis.zubiolo@gmail.com}
+\end{huge}
+\vfill
+\begin{Large}
+\texttt{https://github.com/azubiolo/itstep}
+\end{Large}
 \vfill
 \end{frame}
 

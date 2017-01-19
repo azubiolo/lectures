@@ -13,7 +13,7 @@
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 
-\title[Course presentation]{Introduction to machine learning course}
+\title[Course presentation]{Machine learning from scratch}
 \subtitle{Lecture 1: Introduction and presentation of the course}
 \author{Alexis Zubiolo\newline\texttt{alexis.zubiolo@gmail.com}}
 \institute{Data Science Team Lead @ Adcash}
@@ -61,6 +61,8 @@ All the material will be available on my personal GitHub:
   	\item classification
   	\item regression
   \end{itemize}
+\vfill
+	\item Big picture of a machine learning algorithm
 \vfill
   \item Goals and presentation of the course 
 \vfill
@@ -226,7 +228,7 @@ Machine learning is a wide and growing field. It also includes:
 \pause 
 \vfill
 \begin{itemize}
-	\item Clustering (no predifined label/output)
+	\item Unsupervised learning/clustering (no predefined label/output)
 \pause 
 \vfill
 	\item Dimensionality reduction
@@ -238,19 +240,41 @@ Machine learning is a wide and growing field. It also includes:
 	\item \ldots
 \end{itemize}
 \vfill
+This course will focus on \textbf{supervised learning}.
+\vfill
+\end{frame}
+
+\begin{frame}{ML Algorithm: Big Picture}
+There are several key steps when using supervised learning. Several things have to be chosen:
+\begin{itemize}
+	\item A \textbf{data} set
+	\item A \textbf{model}
+	\item A \textbf{loss} function
+	\item A \textbf{regularization}
+	\item An \textbf{optimizer}
+\end{itemize}
+\vfill
+\pause
+These choices have to take into account a few constraints, depending on the application, \textit{e.g.}:
+\begin{itemize}
+	\item A minimum \textbf{accuracy} (or other performance index)
+	\item \textbf{Time} constraints 
+	\item \textbf{Resources} constraints (storage, computation power, architecture, \ldots)
+\end{itemize}
 \end{frame}
 
 \begin{frame}{The course}
 Goals:
 \begin{itemize}
-	\item Understand how a ML algorithm works
-	\item Being able to implement a ML algorithm
+	\item Understand \textbf{how a supervised ML algorithm works}
+	\item Being \textbf{able to implement a ML algorithm}
+	\item Anything else you might have in mind
 \end{itemize}
 \vfill
 \pause 
 Practical information:
 \begin{itemize}
-	\item $\sim$ \textbf{10 60-90 min sessions} on Thursdays at 6:30pm
+	\item $\sim$ \textbf{10 60-90 min sessions} on Thursdays at 6:30 pm
 	\item Starting with a few lectures about the main concepts followed by lab sessions where you implement these concepts
 	\item All material will be \textbf{available on GitHub}, with links to extra material for those who want to go deeper
 	\vfill
@@ -293,11 +317,11 @@ Practical information:
   \item \textbf{Model validation}
 \end{itemize}
 \vfill
-\textbf{Note}: This is a first estimation. I will adapt to your needs and how fast things go.
+\textbf{Note}: This is a first rough estimation. I will adapt to your needs and how fast things go.
 \end{frame}
 
 \begin{frame}{About programming languages}
-For the practical sessions, I will be using \textbf{Python with Jupyter}.
+For the practical sessions, I will be using \textbf{Python} with \textbf{Jupyter}.
 \begin{center}
 \texttt{http://jupyter.org/}
 \end{center}

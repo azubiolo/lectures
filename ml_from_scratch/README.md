@@ -5,4 +5,4 @@ Practical information can be found [here](http://itstep.bg/news-bg/kurs-machine-
 
 Outline of the course:
 - [`0_introduction`](0_introduction): Course introduction and presentation
-- [`1_introduction`](1_background): Mathematic background
+- [`1_background`](1_background): Mathematic background

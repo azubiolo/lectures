@@ -12,6 +12,18 @@
 
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{bm}
+
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\yhat}{\hat{y}}
+\newcommand{\bxi}{\bm{x}^{(i)}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\xij}{x^{(i)}_j}
+\newcommand{\yi}{y^{(i)}}
 
 \title[Course presentation]{Machine learning from scratch}
 \subtitle{Lecture 1: Mathematical background}
@@ -23,6 +35,39 @@
 
 \begin{frame}
   \titlepage
+\end{frame}
+
+\begin{frame}{Before we start}
+IT STEP will be organizing a Tech night on \textbf{February 16th} (Thursday) from 7pm. I will (probably) be giving a talk. The course will most likely be postponed.
+\end{frame}
+
+\begin{frame}{Motivation, vocabulary and notations}
+In \textbf{supervised learning} tasks, we are given a \textit{data set} of the form:
+$$ D = \left\{ (\bxi \yi), \bxi \in \X, \yi \in \Y i \in \{1, \dots, n \}  \right\}$$
+\pause
+\begin{itemize}
+	\item $n$ is the size of the data set (number of \textit{instances}/\textit{samples})
+	\item In most applications:
+	\begin{itemize}
+		\item $\X = \real^d$ ($d$ is the \textit{dimensionality})
+		\item $\Y = \real$ (\textit{regression}) or $\Y \subset \N$ (\textit{classification})
+	\end{itemize}		
+	\item $\bx \in \X$ is the \textit{feature vector} and $y \in \Y$ is the \textit{label}
+\end{itemize}
+\pause
+\vfill
+Solving a \textbf{supervised learning problem} is finding (or \textit{learning}) a function (or \textit{hypothesis}) $h : \X \mapsto \Y$ such that for $(x, y)\in D$, $h(\bx)$ is a \textit{good} estimation  (or approximation) of $y$.
+\pause
+\vfill
+We often write $h(\bx) = \yhat$ ($\yhat$ is the \textit{prediction} of $\bx$ by $h$).
+\end{frame}
+
+\begin{frame}{Hypothesis parametrization}
+The previous slide raises \textbf{2 questions}:
+\begin{itemize}
+	\item How to define $h$
+	\item How to assess whether $h(\bx) = \yhat$ is a good approximation of $y$.
+\end{itemize}
 \end{frame}
 
 \end{document}

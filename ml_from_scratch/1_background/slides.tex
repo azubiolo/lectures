@@ -14,6 +14,7 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage{bbm}
 
 \newcommand{\X}{\mathcal{X}}
 \newcommand{\Y}{\mathcal{Y}}
@@ -26,6 +27,7 @@
 \newcommand{\yi}{y^{(i)}}
 \newcommand{\yhati}{\hat{y}^{(i)}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\1}[1]{\mathbbm{1}\left[#1\right]}
 
 \title[Course presentation]{Machine learning from scratch}
 \subtitle{Lecture 1: Mathematical background}
@@ -189,8 +191,45 @@ where $\nabla J(\theta)$ is the \textbf{gradient} of $J$ in $\theta$. We have, b
 \end{equation*}
 \end{frame}
 
+\begin{frame}{Least Mean Squares (LMS) update rule}
+To apply the LMS update rule, we need to compute the gradient of $J$. Let's compute it for a single $(\bx, y)$ sample:
+\begin{equation*}
+\begin{split}
+\dfrac{\partial}{\partial \theta_j} J(\theta) & = \dfrac{\partial}{\partial \theta_j} \dfrac{1}{2} \left( h\left(\bxi\right) - \yi \right)^2\\
+ & = 
+\end{split}
+\end{equation*}
+\end{frame}
+
 \begin{frame}{Loss functions}
-Recall we want to know whether $y$ a good prediction of $\yhat$.
+0-1 loss:
+$$ \ell \left( \hat{y}, y \right) = \1{\hat{y} = y}$$
+\vfill
+\pause
+Squared loss:
+$$ \ell \left( \hat{y}, y \right) = \left( \hat{y} - y\right)^2$$
+\vfill
+\pause
+Hinge loss:
+$$ \ell \left( \hat{y}, y \right) = \max\left(0, 1 - \hat{y} y\right)$$
+\vfill
+\pause
+Squared hinge loss:
+$$ \ell \left( \hat{y}, y \right) = \max\left(0, 1 - \hat{y} y\right)^2 $$
+\vfill
+\pause
+Log-loss:
+$$ \ell \left( \hat{y}, y \right) = \log \left( 1 + \exp ( - \hat{y}y )\right) $$
+\vfill
+\pause
+Possibility to add a weight to the loss!
+
+\end{frame}
+
+\begin{frame}{Loss functions}
+\begin{figure}
+\includegraphics[width=\linewidth]{images/losses.png}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Regularization}
@@ -202,6 +241,14 @@ Now, we want to minimize a function of the form
 \begin{equation}
 J(\theta) = \sum_{i = 1}^{n} \ell\left(\yi, \yhati\right) + \lambda R(\theta)
 \end{equation}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[htb]
+        \includegraphics[width=.3\linewidth]{images/newton_method0}\hfill
+         \includegraphics[width=.3\linewidth]{images/newton_method1}\hfill
+        \includegraphics[width=.3\linewidth]{images/newton_method2}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Conclusion}

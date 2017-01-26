@@ -195,13 +195,102 @@ where $\nabla J(\theta)$ is the \textbf{gradient} of $J$ in $\theta$. We have, b
 To apply the LMS update rule, we need to compute the gradient of $J$. Let's compute it for a single $(\bx, y)$ sample:
 \begin{equation*}
 \begin{split}
-\dfrac{\partial}{\partial \theta_j} J(\theta) & = \dfrac{\partial}{\partial \theta_j} \dfrac{1}{2} \left( h\left(\bxi\right) - \yi \right)^2\\
- & = 
+\dfrac{\partial}{\partial \theta_j} J(\theta) & = \dfrac{\partial}{\partial \theta_j} \dfrac{1}{2} \left( h\left(\bx\right) - y \right)^2 \\ 
+ & = \text{?} \\
+\end{split}
+\end{equation*}
+\textbf{Exercise}: Compute the gradient and find the update rule.
+\end{frame}
+
+\begin{frame}{Least Mean Squares (LMS) update rule}
+Solution: 
+\begin{equation*}
+\begin{split}
+\dfrac{\partial}{\partial \theta_j} J(\theta) & = \dfrac{\partial}{\partial \theta_j} \dfrac{1}{2} \left( h\left(\bx\right) - y \right)^2 \\ 
+ & = 2 \dfrac{1}{2} \left( h\left(\bx\right) - y \right) \dfrac{\partial}{\partial \theta_j}\left( h\left(\bx\right) - y \right)\\
+ & = \left( h\left(\bx\right) - y \right) \dfrac{\partial}{\partial \theta_j}\left( \sum_{k = 1}^{d} \theta_k x_k - y \right)\\
+ & = \left( h\left(\bx\right) - y \right) x_j\\
+\end{split}
+\end{equation*}
+\pause
+\vfill
+So the gradient descent update becomes
+\begin{equation*}
+\begin{split}
+\theta_j &:= \theta_j - \alpha \dfrac{\partial}{\partial \theta_j} J(\theta) \\
+ & := \theta_j + \alpha \left( y - h\left(\bx\right)\right) x_j
 \end{split}
 \end{equation*}
 \end{frame}
 
-\begin{frame}{Loss functions}
+\begin{frame}{LMS update rule interpretation}
+LMS update rule for one sample:
+\begin{equation*}
+ \theta_j := \theta_j + \alpha \left( y - h\left(\bx\right)\right) x_j
+\end{equation*}
+\vfill
+\pause
+A few intuitive \textbf{interpretations}:
+\begin{itemize}
+	\item The magnitude of the step we make is proportional to $\alpha$
+	\item The magnitude of the step we make is proportional to $ \left( y - h\left(\bx\right)\right)$, which is \textbf{the error} we make:
+	\begin{itemize}
+		\item If $h\left(\bx\right) \approx y$, then we won't move much
+		\item Else, we will make a bigger step
+	\end{itemize}
+\end{itemize}
+\vfill
+\pause
+Given this update rule, we can derive two different algorithms:
+\begin{itemize}
+	\item Batch gradient descent
+	\item Stochastic gradient descent
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LMS update rule interpretation: batch updates}
+LMS update rule for one sample:
+\begin{equation*}
+ \theta_j := \theta_j + \alpha \left( y - h\left(\bx\right)\right) x_j
+\end{equation*}
+\pause
+\vfill
+\textbf{Exercise}: What would be the batch gradient update rule?
+\pause
+\vfill
+\textbf{Solution}: Repeat, until \textit{convergence}: For every $j \in \left\{ 1, \dots, d\right\}$:
+\begin{equation*}
+\theta_j := \theta_j + \alpha \sum_{i = 1}^n \left(\yi - h\left(x^{(i)}_j\right)\right) x^{(i)}_j
+\end{equation*}
+
+\end{frame}
+
+\begin{frame}{LMS update rule interpretation: Stochastic updates}
+
+LMS update rule for one sample:
+\begin{equation*}
+ \theta_j := \theta_j + \alpha \left( y - h\left(\bx\right)\right) x_j
+\end{equation*}
+\pause
+\vfill
+\textbf{Exercise}: What would be the batch stochastic update rule?
+\pause
+\vfill
+\textbf{Solution}: Repeat, until \textit{convergence}: For $i \in \left\{1, \dots, n \right\}$, for every $j \in \left\{ 1, \dots, d\right\}$:
+\begin{equation*}
+\theta_j := \theta_j + \alpha \sum_{i = 1}^n \left(\yi - h\left(x^{(i)}_j\right)\right) x^{(i)}_j
+\end{equation*}
+Here, $\theta$ is updated everytime we read a sample!
+\end{frame}
+
+\begin{frame}{Optimization convergence}
+The batch and stochastic gradient descents we discussed iterate until convergence. How do we know whether the algorithm has converged or now?
+\vfill
+\pause
+We usually check the difference between two successive values of $J(\theta)$.
+\end{frame}
+
+\begin{frame}{Standard loss functions}
 0-1 loss:
 $$ \ell \left( \hat{y}, y \right) = \1{\hat{y} = y}$$
 \vfill
@@ -220,39 +309,23 @@ $$ \ell \left( \hat{y}, y \right) = \max\left(0, 1 - \hat{y} y\right)^2 $$
 \pause
 Log-loss:
 $$ \ell \left( \hat{y}, y \right) = \log \left( 1 + \exp ( - \hat{y}y )\right) $$
-\vfill
-\pause
-Possibility to add a weight to the loss!
-
 \end{frame}
 
 \begin{frame}{Loss functions}
 \begin{figure}
+\centering
 \includegraphics[width=\linewidth]{images/losses.png}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Regularization}
-
-\end{frame}
-
-\begin{frame}{Optimization}
-Now, we want to minimize a function of the form
-\begin{equation}
-J(\theta) = \sum_{i = 1}^{n} \ell\left(\yi, \yhati\right) + \lambda R(\theta)
-\end{equation}
-\end{frame}
-
-\begin{frame}
-\begin{figure}[htb]
-        \includegraphics[width=.3\linewidth]{images/newton_method0}\hfill
-         \includegraphics[width=.3\linewidth]{images/newton_method1}\hfill
-        \includegraphics[width=.3\linewidth]{images/newton_method2}
-\end{figure}
-\end{frame}
-
 \begin{frame}{Conclusion}
-Next week we will implement some of the concepts we've seen today.
+We have seen the motivation and the formalization of a supervised learning problem with a basic example.
+\vfill
+\pause
+Next week, there will be some implementation tasks to do. You can work on the machines at IT STEP, but feel free to bring your laptop if you prefer.
+\vfill
+\pause
+Also, we still have to see more general concepts about optimization, statistical interpretations, regularization.
 \end{frame}
 
 \begin{frame}

@@ -25,6 +25,7 @@
 \newcommand{\xij}{x^{(i)}_j}
 \newcommand{\yi}{y^{(i)}}
 \newcommand{\yhati}{\hat{y}^{(i)}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \title[Course presentation]{Machine learning from scratch}
 \subtitle{Lecture 1: Mathematical background}
@@ -90,6 +91,104 @@ How you define $h$ highly depends on the application, for example:
 \end{itemize}
 \end{frame}
 
+
+\begin{frame}{Linear Algebra concepts (1)}
+Recall the regression example from the previous lecture:
+\pause
+\vfill
+\begin{table}
+\centering
+\begin{tabular}{r|r|r}
+living area (m$^2$) &  \textbf{\# bedrooms} & price (1000's BGN) \\\hline
+50 & \textbf{1} & 30\\
+76 & \textbf{2} & 48\\
+26 & \textbf{1} & 12\\
+102 & \textbf{3} & 90\\
+\pause
+61 & \textbf{2} & ?
+\end{tabular}
+\end{table}
+\vfill
+\pause
+Illustration of the introduced notations:
+\begin{itemize}
+	\item $\X = \real^2$ ($d = 2$ dimensions: living area and  \# bedrooms)
+	\item $\Y = \real$ (regression task)
+	\item $\bx^{(1)} = \left[ 50, 1 \right]^T$ and $y^{(1)} = 30000$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Linear algebra concepts (2)}
+\begin{table}
+\centering
+\begin{tabular}{r|r|r}
+living area (m$^2$) &  \textbf{\# bedrooms} & price (1000's BGN) \\\hline
+50 & \textbf{1} & 30\\
+76 & \textbf{2} & 48\\
+26 & \textbf{1} & 12\\
+102 & \textbf{3} & 90\\
+\end{tabular}
+\end{table}
+\vfill
+\pause
+Using a \textbf{linear regression model} gives
+\begin{equation*}
+h_\theta(\bx) = \theta_0 + \theta_1 x_1 + \theta_2 x_2
+\end{equation*}
+Generalization to any dimensionality $d$:
+\begin{equation*}
+h(\bx) = \sum_{j = 0}^{d} \theta_j x_j = \theta^T \bx
+\end{equation*}
+Here, we set $\bx_0 = 1$ so that $\theta_0$ is included in $\theta$. $\theta^T \bx$ is called the dot product (or inner product) between $theta$ and $\bx$ and is sometimes noted $\langle {\theta, \bx} \rangle$.
+\end{frame}
+
+\begin{frame}{Ordinary least squares}
+\begin{table}
+\centering
+\begin{tabular}{r|r|r}
+living area (m$^2$) &  \textbf{\# bedrooms} & price (1000's BGN) \\\hline
+50 & \textbf{1} & 30\\
+76 & \textbf{2} & 48\\
+26 & \textbf{1} & 12\\
+102 & \textbf{3} & 90\\
+\end{tabular}
+\end{table}
+\vfill
+\begin{equation*}
+h(\bx) = \sum_{j = 0}^{d} \theta_j x_j = \theta^T \bx
+\end{equation*}
+\pause
+\vfill
+Suppose we chose the following loss function:
+\begin{equation*}
+\ell \left( y, \yhat \right) = \dfrac{1}{2} \left( y - \yhat \right)^2
+\end{equation*}
+This leads to the following least squares \textit{cost function}:
+\begin{equation*}
+J(\theta) = \dfrac{1}{2} \sum_{i = 1}^{n} \left( h\left(\bxi\right) - \yi \right)^2
+\end{equation*}
+This problem the \textbf{ordinary least squares} (OLS) regression model.
+\end{frame}
+
+\begin{frame}{Least Mean Squares (LMS) update rule}
+We want to minimize the following cost function:
+\begin{equation*}
+J(\theta) = \dfrac{1}{2} \sum_{i = 1}^{n} \left( h\left(\bxi\right) - \yi \right)^2
+\end{equation*}
+One way to do it is by using the \textbf{gradient descent} algorithm:
+\begin{equation*}
+\theta_j := \theta_j - \alpha \dfrac{\partial}{\partial \theta_j} J(\theta)
+\end{equation*}
+for all $j \in \{ 0, \dots, d\}$. $\alpha$ is called the \textbf{step size} or the \textbf{learning rate}. This update rule can be rewritten in a more compact way:
+\begin{equation*}
+\theta := \theta - \alpha \nabla J(\theta)
+\end{equation*}
+where $\nabla J(\theta)$ is the \textbf{gradient} of $J$ in $\theta$. We have, by definition:
+\begin{equation*}
+\nabla J(\theta) = \left[ \dfrac{\partial}{\partial \theta_1} J(\theta), \dots, \dfrac{\partial}{\partial \theta_d} J(\theta) \right]^T
+\end{equation*}
+\end{frame}
+
 \begin{frame}{Loss functions}
 Recall we want to know whether $y$ a good prediction of $\yhat$.
 \end{frame}
@@ -101,8 +200,27 @@ Recall we want to know whether $y$ a good prediction of $\yhat$.
 \begin{frame}{Optimization}
 Now, we want to minimize a function of the form
 \begin{equation}
-J(\theta) = \sum_{i = 1}^{n} \ell\left(\yi, \yhati\right)
+J(\theta) = \sum_{i = 1}^{n} \ell\left(\yi, \yhati\right) + \lambda R(\theta)
 \end{equation}
+\end{frame}
+
+\begin{frame}{Conclusion}
+Next week we will implement some of the concepts we've seen today.
+\end{frame}
+
+\begin{frame}
+\vfill
+\centering
+\begin{huge}
+\huge{Thank you! Questions?}
+\vfill
+\texttt{alexis.zubiolo@gmail.com}
+\end{huge}
+\vfill
+\begin{Large}
+\texttt{https://github.com/azubiolo/itstep}
+\end{Large}
+\vfill
 \end{frame}
 
 \end{document}

@@ -24,6 +24,7 @@
 \newcommand{\bx}{\bm{x}}
 \newcommand{\xij}{x^{(i)}_j}
 \newcommand{\yi}{y^{(i)}}
+\newcommand{\yhati}{\hat{y}^{(i)}}
 
 \title[Course presentation]{Machine learning from scratch}
 \subtitle{Lecture 1: Mathematical background}
@@ -43,7 +44,7 @@ IT STEP will be organizing a Tech night on \textbf{February 16th} (Thursday) fro
 
 \begin{frame}{Motivation, vocabulary and notations}
 In \textbf{supervised learning} tasks, we are given a \textit{data set} of the form:
-$$ D = \left\{ (\bxi \yi), \bxi \in \X, \yi \in \Y i \in \{1, \dots, n \}  \right\}$$
+$$ D = \left\{ \left(\bxi, \yi\right), \bxi \in \X, \yi \in \Y, i \in \{1, \dots, n \}  \right\}$$
 \pause
 \begin{itemize}
 	\item $n$ is the size of the data set (number of \textit{instances}/\textit{samples})
@@ -54,20 +55,54 @@ $$ D = \left\{ (\bxi \yi), \bxi \in \X, \yi \in \Y i \in \{1, \dots, n \}  \righ
 	\end{itemize}		
 	\item $\bx \in \X$ is the \textit{feature vector} and $y \in \Y$ is the \textit{label}
 \end{itemize}
-\pause
-\vfill
-Solving a \textbf{supervised learning problem} is finding (or \textit{learning}) a function (or \textit{hypothesis}) $h : \X \mapsto \Y$ such that for $(x, y)\in D$, $h(\bx)$ is a \textit{good} estimation  (or approximation) of $y$.
+\end{frame}
+
+\begin{frame}{Motivation, vocabulary and notations}
+Solving a \textbf{supervised learning problem} is finding (or \textit{learning}) a function (or \textit{hypothesis}) $h : \X \mapsto \Y$ such that for $(\bx, y)\in D$, $h(\bx)$ is a \textit{good} estimation  (or approximation) of $y$.
 \pause
 \vfill
 We often write $h(\bx) = \yhat$ ($\yhat$ is the \textit{prediction} of $\bx$ by $h$).
+\pause
+\vfill
+This raises \textbf{2 questions}:
+\begin{itemize}
+	\item How to define $h$?
+	\item How to assess whether $\yhat$ is a good approximation of $y$?
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Hypothesis parametrization}
-The previous slide raises \textbf{2 questions}:
+$h$ is often defined by a parameter vector $\theta$ and can be noted $h_\theta$. \pause Several ways to parametrize $h$ exist:
 \begin{itemize}
-	\item How to define $h$
-	\item How to assess whether $h(\bx) = \yhat$ is a good approximation of $y$.
+	\item \textbf{Linear model}: $h(\bx) = \theta^T \bx$
+	\item \textbf{Polynomial kernel} (degree $k$): $h(\bx) = \left(1 + \theta^T \bx\right)^k$
+	\item Other kernels exist, more on this when we talk about duality
+	\item With a \textbf{neural net}, more on this later as well
+	\item \ldots
 \end{itemize}
+\vfill
+\pause
+How you define $h$ highly depends on the application, for example:
+\begin{itemize}
+	\item Sometimes a lot of data preprocessing has been made and a simple model (e.g. linear) would work well
+	\item You might have \textbf{time/hardware constraints}: In this case going for a too complex model might be crippling
+	\item For neural net, the architecture depends a lot on the type of data you have
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Loss functions}
+Recall we want to know whether $y$ a good prediction of $\yhat$.
+\end{frame}
+
+\begin{frame}{Regularization}
+
+\end{frame}
+
+\begin{frame}{Optimization}
+Now, we want to minimize a function of the form
+\begin{equation}
+J(\theta) = \sum_{i = 1}^{n} \ell\left(\yi, \yhati\right)
+\end{equation}
 \end{frame}
 
 \end{document}

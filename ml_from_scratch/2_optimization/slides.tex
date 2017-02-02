@@ -1,0 +1,87 @@
+\documentclass{beamer}
+%\documentclass[aspectratio=169]{beamer}
+%
+\mode<presentation>
+{
+  \usetheme{default}      
+  \usecolortheme{default}
+  \usefonttheme{default} 
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{bbm}
+
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\yhat}{\hat{y}}
+\newcommand{\bxi}{\bm{x}^{(i)}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\xij}{x^{(i)}_j}
+\newcommand{\yi}{y^{(i)}}
+\newcommand{\yhati}{\hat{y}^{(i)}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\1}[1]{\mathbbm{1}\left[#1\right]}
+
+\title[Course presentation]{Machine learning from scratch}
+\subtitle{Lecture 2: Convex optimization}
+\author{Alexis Zubiolo\newline\texttt{alexis.zubiolo@gmail.com}}
+\institute{Data Science Team Lead @ Adcash}
+\date{February 2, 2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Context reminder}
+\begin{table}
+\centering
+\begin{tabular}{r|r|r|r}
+living area (m$^2$) & \# bedrooms & intercept & price (1000's BGN) \\\hline
+50 & 1 & 1 & 30\\
+76 & 2 & 1 & 48\\
+26 & 1 & 1 & 12\\
+102 & 3 & 1 & 90\\
+\end{tabular}
+\end{table}
+\vfill
+\begin{equation*}
+h(\bx) = \sum_{j = 0}^{d} \theta_j x_j = \theta^T \bx
+\end{equation*}
+\pause
+\vfill
+Suppose we chose the following loss function:
+\begin{equation*}
+\ell \left( y, \yhat \right) = \dfrac{1}{2} \left( y - \yhat \right)^2
+\end{equation*}
+This leads to the following least squares \textit{cost function}:
+\begin{equation*}
+J(\theta) = \dfrac{1}{2} \sum_{i = 1}^{n} \left( h\left(\bxi\right) - \yi \right)^2
+\end{equation*}
+This problem the \textbf{ordinary least squares} (OLS) regression model.
+\end{frame}
+
+\begin{frame}
+\vfill
+\centering
+\begin{huge}
+\huge{Thank you! Questions?}
+\vfill
+\texttt{alexis.zubiolo@gmail.com}
+\end{huge}
+\vfill
+\begin{Large}
+\texttt{https://github.com/azubiolo/itstep}
+\end{Large}
+\vfill
+\end{frame}
+
+\end{document}

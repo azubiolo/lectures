@@ -40,8 +40,222 @@
 \begin{frame}
   \titlepage
 \end{frame}
+\begin{frame}{Optimization: Derivatives}
+The \textbf{derivative} is an important concept in optimization and in machine learning. Mathematical definition: Let $f : \real \mapsto \real$ be a function. Its derivative $f'$ is defined by:
+\begin{equation*}
+	f'(x) = \dfrac{df}{dx}(x) = \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h}
+\end{equation*}
+\end{frame}
 
-\begin{frame}{Context reminder}
+\begin{frame}{Derivatives: Why we use them (1)}
+\textbf{Derivatives} give us an idea of the local behavior of the function.
+\vfill
+\pause
+\textbf{Case 1}: $f'(x) > 0$
+\vfill
+\pause
+Suppose $h > 0$, we have
+\begin{equation*}
+\begin{split}
+f'(x) > 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} > 0 \\
+& \iff f(x + h) > f(x) \\
+& \iff f \text{ is increasing (because } x + h > x \text{)}
+\end{split}
+\end{equation*}
+\vfill
+\pause
+Now, suppose $h < 0$, we have
+\vfill
+\pause
+\begin{equation*}
+\begin{split}
+f'(x) > 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} > 0 \\
+& \iff f(x + h) < f(x) \\
+& \iff f \text{ is increasing (because } x + h < x \text{)}
+\end{split}
+\end{equation*}
+\vfill
+\pause
+\textbf{Conclusion}: $f \text{ is increasing} \iff f' > 0$
+\end{frame}
+
+\begin{frame}{Derivatives: Why we use them (2)}
+\textbf{Case 2}: $f'(x) < 0$
+\vfill
+\pause
+Now, suppose again $h > 0$, we have
+\vfill
+\pause
+\begin{equation*}
+\begin{split}
+f'(x) > 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} > 0 \\
+& \iff f(x + h) < f(x) \\
+& \iff f \text{ is increasing}
+\end{split}
+\end{equation*}
+\pause
+\vfill
+\pause
+Suppose again $h < 0$, we have:
+\vfill
+\pause
+\begin{equation*}
+\begin{split}
+\lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} < 0 & \iff f(x + h) - f(x) = 0 \\
+ & \iff f(x + h) = f(x)
+\end{split}
+\end{equation*}
+\vfill
+\pause
+\textbf{Conclusion}: $f \text{ is decreasing} \iff f' < 0$
+\end{frame}
+
+\begin{frame}{Derivatives: Why we use them (3)}
+\textbf{Case 3}: $f'(x) = 0$, then 
+\vfill
+\pause
+\begin{equation*}
+\begin{split}
+f'(x) = 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} = 0 \\
+& \iff f(x + h) = f(x) \\
+& \iff f \text{ is constant}
+\end{split}
+\end{equation*}
+\vfill
+\pause
+\textbf{Conclusion}: $f$ is constant $\iff f = 0$
+\vfill
+\pause
+\textbf{Summary}:
+\begin{itemize}
+	\item $f \text{ is increasing} \iff f'(x) > 0$
+	\item $f \text{ is decreasing} \iff f'(x) < 0$
+	\item $f \text{ is constant} \iff f'(x) = 0$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Derivatives: Why we use them (4)}
+\textbf{Summary}:
+\begin{itemize}
+	\item $f \text{ is increasing} \iff f'(x) > 0$
+	\item $f \text{ is decreasing} \iff f'(x) < 0$
+	\item $f \text{ is constant} \iff f'(x) = 0$
+\end{itemize}
+\vfill
+\pause
+What do we do with this?
+\vfill
+\pause
+If we want to find $f$'s minimum, a strategy could be:
+\begin{enumerate}
+	\item Start at a random point $x_0 \in \real$
+	\item Compute $f'(x_0)$ and then
+	\begin{itemize}
+		\item if $f'(x_0) > 0$ then move to the left (because $f$ is increasing) 
+		\item if $f'(x_0) < 0$ then move to the right (because $f$ is decreasing)
+		\item if $f'(x_0) = 0$ then we stop
+	\end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Derivatives: How to compute them?}
+There are several ways to compute the derivatives.
+\begin{itemize}
+\vfill
+\pause
+	\item By \textbf{applying the definition}
+\begin{equation*}
+	f'(x) = \dfrac{df}{dx}(x) = \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h}
+\end{equation*}
+	with a small $h$ (\textit{e.g.} $h = 0.01$). This is called the \textbf{finite difference approximation}.
+	\item By using \textbf{closed-form derivatives}, \textit{e.g.}
+\begin{equation*}
+	\text{if } f(x) = x^2 \text{, then } f'(x) = 2x
+\end{equation*}
+	How do we know that? By using the formula!
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Derivative: Practical example}
+Recall the definition:
+\begin{equation*}
+\begin{split}
+	f'(x) &= \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h}
+\end{split}
+\end{equation*}
+\textbf{Exercice}: Apply this formula for $f(x) = x^2$. What is $f'(x)$?
+\pause
+\vfill
+\begin{equation*}
+\begin{split}
+	f'(x) &= \lim_{h \to 0}\dfrac{(x + h)^2 - x^2}{h} \\
+	& = \lim_{h \to 0}\dfrac{x^2 + 2hx + h^2 - x^2}{h} \\
+	& = \lim_{h \to 0}\dfrac{2hx + h^2}{h} \\
+	& = \lim_{h \to 0} 2x + h = 2x
+\end{split}
+\end{equation*}
+We can apply this logic to the usual functions ($\log$, $\cos$, $\sin$, \ldots) and obtain what we call \textbf{closed-form solutions}. 
+\vfill
+\pause
+\textbf{Exercise}: Do the same for $f(x) = \frac{1}{x}$.
+\end{frame}
+
+\begin{frame}{Derivatives: Finite difference approximation}
+\textbf{Recall}: The \textbf{finite difference approximation} consists in applying the following formula
+\begin{equation*}
+	f'(x) = \dfrac{df}{dx}(x) = \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h}
+\end{equation*}
+with $h$ close enough to $0$.
+\pause
+\vfill
+There's a symmetric and more stable formula, called the \textbf{centered finite difference approximation}.
+\begin{equation*}
+	f'(x) = \dfrac{df}{dx}(x) = \lim_{h \to 0}\dfrac{f(x + h) - f(x - h)}{2h}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Chain rule}
+Another important rule concerning derivatives is the \textbf{chain rule}:
+\begin{equation}
+	(f(g(x)))' = g'(x) f'(g(x))
+\end{equation}
+or, equivalently:
+\begin{equation}
+	\dfrac{df(g(x))}{dx} = \dfrac{df(g)}{dg} \dfrac{dg(x)}{dx}
+\end{equation}
+\end{frame}
+
+\begin{frame}{Gradient: Generalizing the derivatives}
+Derivatives look like a practical way to get the minimum of a function, which is what we want to achieve (minimizing $J(\theta)$).
+\vfill
+\pause
+However, the definition we've seen only applies to function from $\real$ to $\real$. The \textbf{gradient} is a generalization of the derivative for functions from $\real^d$ to $\real$, like $J$.
+\end{frame}
+
+\begin{frame}{Beyond derivatives: Gradient}
+Let's consider a function of $f$ 2 real variables $x$ and $y$, \textit{e.g.}
+\begin{equation*}
+f(x, y) = xy
+\end{equation*}
+The gradient of $f$ is a 2-dimensional vector noted $\nabla f$ defined by:
+\begin{equation*}
+\nabla f(x, y) = \left[ \dfrac{\partial f(x, y)}{\partial x}, \dfrac{\partial f(x, y)}{\partial y} \right]
+\end{equation*}
+where 
+$$\dfrac{\partial f(x, y)}{\partial x}$$ 
+is the \textbf{partial derivative} of $f$ with respect to $x$ (considering $y$ as a constant), and 
+$$\dfrac{\partial f(x, y)}{\partial x}$$ 
+is the \textbf{partial derivative} of $f$ with respect to $y$ (considering $x$ as a constant).
+\vfill
+\pause
+\textbf{Exercise}: What is $\nabla f(x, y)$ for $f(x, y) = xy$ and $f(x, y) = x + y$?
+\end{frame}
+
+\begin{frame}{Beyond derivatives: Gradient}
+Interpretation of the gradient: Direction of \textbf{steepest descent} of $f$
+\end{frame}
+
+\begin{frame}{Back to least squares: context reminder}
 \begin{table}
 \centering
 \begin{tabular}{r|r|r|r}
@@ -67,6 +281,54 @@ This leads to the following least squares \textit{cost function}:
 J(\theta) = \dfrac{1}{2} \sum_{i = 1}^{n} \left( h\left(\bxi\right) - \yi \right)^2
 \end{equation*}
 This problem the \textbf{ordinary least squares} (OLS) regression model.
+\end{frame}
+
+\begin{frame}{Least Mean Squares (LMS) update rule}
+To apply the LMS update rule, we need to compute the gradient of $J$. Let's compute it for a single $(\bx, y)$ sample:
+\begin{equation*}
+\begin{split}
+\dfrac{\partial}{\partial \theta_j} J(\theta) & = \dfrac{\partial}{\partial \theta_j} \dfrac{1}{2} \left( h\left(\bx\right) - y \right)^2 \\ 
+ & = \text{?} \\
+\end{split}
+\end{equation*}
+where $h(\bx) = \sum_{j = 0}^{d} \theta_j x_j = \theta^T \bx$
+\vfill
+\pause
+\textbf{Exercise}: Compute the gradient and find the update rule.
+\end{frame}
+
+\begin{frame}{Least Mean Squares (LMS) update rule}
+\textbf{Solution}: 
+\begin{equation*}
+\begin{split}
+\dfrac{\partial}{\partial \theta_j} J(\theta) & = \dfrac{\partial}{\partial \theta_j} \dfrac{1}{2} \left( h\left(\bx\right) - y \right)^2 \\ 
+ & = 2 \dfrac{1}{2} \left( h\left(\bx\right) - y \right) \dfrac{\partial}{\partial \theta_j}\left( h\left(\bx\right) - y \right)\\
+ & = \left( h\left(\bx\right) - y \right) \dfrac{\partial}{\partial \theta_j}\left( \sum_{k = 0}^{d} \theta_k x_k - y \right)\\
+ & = \left( h\left(\bx\right) - y \right) x_j\\
+\end{split}
+\end{equation*}
+\pause
+\vfill
+So the gradient descent update becomes
+\begin{equation*}
+\begin{split}
+\theta_j &:= \theta_j - \alpha \dfrac{\partial}{\partial \theta_j} J(\theta) \\
+ & := \theta_j + \alpha \left( y - h\left(\bx\right)\right) x_j
+\end{split}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Conclusion}
+We had an overview of the optimization techniques. 
+\vfill
+\pause
+Next Thursday, we will review what needs to be reviewed (tell me by email so that I can adapt or when the class starts) and start implementing:
+\begin{itemize}
+	\item The loss function for the least-squares problem
+	\item Its gradient
+	\item The Gradient descent weight upgrade
+	\item Run it on a toy example
+\end{itemize}
 \end{frame}
 
 \begin{frame}

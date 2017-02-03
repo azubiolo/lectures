@@ -88,9 +88,9 @@ Now, suppose again $h > 0$, we have
 \pause
 \begin{equation*}
 \begin{split}
-f'(x) > 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} > 0 \\
+f'(x) < 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} < 0 \\
 & \iff f(x + h) < f(x) \\
-& \iff f \text{ is increasing}
+& \iff f \text{ is decreasing}
 \end{split}
 \end{equation*}
 \pause
@@ -101,8 +101,9 @@ Suppose again $h < 0$, we have:
 \pause
 \begin{equation*}
 \begin{split}
-\lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} < 0 & \iff f(x + h) - f(x) = 0 \\
- & \iff f(x + h) = f(x)
+f'(x) < 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} < 0 \\
+& \iff f(x + h) > f(x) \\
+& \iff f \text{ is decreasing}
 \end{split}
 \end{equation*}
 \vfill
@@ -123,7 +124,7 @@ f'(x) = 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} = 0 \\
 \end{equation*}
 \vfill
 \pause
-\textbf{Conclusion}: $f$ is constant $\iff f = 0$
+\textbf{Conclusion}: $f$ is constant $\iff f' = 0$
 \vfill
 \pause
 \textbf{Summary}:
@@ -146,7 +147,7 @@ f'(x) = 0 & \iff \lim_{h \to 0}\dfrac{f(x + h) - f(x)}{h} = 0 \\
 What do we do with this?
 \vfill
 \pause
-If we want to find $f$'s minimum, a strategy could be:
+If we want to find $f$'s minimum(s), a strategy could be:
 \begin{enumerate}
 	\item Start at a random point $x_0 \in \real$
 	\item Compute $f'(x_0)$ and then
@@ -251,7 +252,19 @@ is the \textbf{partial derivative} of $f$ with respect to $y$ (considering $x$ a
 \textbf{Exercise}: What is $\nabla f(x, y)$ for $f(x, y) = xy$ and $f(x, y) = x + y$?
 \end{frame}
 
-\begin{frame}{Beyond derivatives: Gradient}
+\begin{frame}{Gradient: Generalizing the derivatives}
+Recall we want to minimize the following cost function:
+\begin{equation*}
+J(\theta) = \dfrac{1}{2} \sum_{i = 1}^{n} \left( h\left(\bxi\right) - \yi \right)^2
+\end{equation*}
+\pause
+\vfill
+To do so, we need to compute $\nabla J(\theta)$, the \textbf{gradient} of $J$ in $\theta$, which is, by definition:
+\begin{equation*}
+\nabla J(\theta) = \left[ \dfrac{\partial}{\partial \theta_1} J(\theta), \dots, \dfrac{\partial}{\partial \theta_d} J(\theta) \right]^T
+\end{equation*}
+\vfill
+\pause
 Interpretation of the gradient: Direction of \textbf{steepest descent} of $f$
 \end{frame}
 

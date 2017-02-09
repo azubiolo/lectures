@@ -7,3 +7,4 @@ Outline of the course:
 - [`0_introduction`](0_introduction): Course introduction and presentation
 - [`1_background`](1_background): Mathematic background
 - [`2_optimization`](2_optimization): Optimization
+- [`3_least-squares`](3_least-squares): An implementation of ordinary least squares

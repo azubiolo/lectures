@@ -1,2 +1,2 @@
-# Presentation
-This folder contains the slides corresponding to the promotion/presentation I gave at IT step before the course starts. The slides can be found in `build/slides.pdf`. The rest is just related to the latex source code used to generate the slides.
+# Tech night presentation
+This folder contains the slides corresponding to the talk I gave on 16 February 2017 at IT STEP academy. The slides can be found in `build/slides.pdf`. The rest is just related to the latex source code used to generate the slides.

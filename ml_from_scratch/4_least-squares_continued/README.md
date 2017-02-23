@@ -5,6 +5,7 @@ During [Lecture 3](../3_least-squares), we saw a basic implementation of the ord
 - Have an implementation of the stochastic gradient descent algorithm and compare it to the batch gradient descent algorithm.
 - Plot levelsets of the loss function and see what the optimization algorithms do.
 - See how the loss evolves over iterations, talk about convergence and define ways to stop the algorithm when convergence is reached.
+
 Homework for the next session are:
 - Normalize the feature corresponding to the size of the house, and see the impact on the loss function.
 - Add an outlier to the training set, see what impact it has on the result and think of a way to address this issue.

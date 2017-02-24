@@ -8,3 +8,4 @@ Outline of the course:
 - [`1_background`](1_background): Mathematic background
 - [`2_optimization`](2_optimization): Optimization
 - [`3_least-squares`](3_least-squares): An implementation of ordinary least squares
+- [`4_least-squares_continued`](4_least-squares_continued): The continuation of the previous lab session

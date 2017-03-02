@@ -1,12 +1,5 @@
-# Lecture 2: Optimization
+# Lecture 5: Regression recap
 
-This lecture aims at introducing the numerical optimization concepts needed for this course.
-The students interested in a more formal and academic approach can refer to the following links:
-- [Pr. Strang's course on linear algebra](https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8)
-- [Pr. Strang's course on calculus](https://www.youtube.com/playlist?list=PLBE9407EA64E2C318)
-- [Pr. Boyd's course on convex optimization](https://www.youtube.com/playlist?list=PL3940DD956CDF0622)
-- [Leon Bottou's paper on SGD](https://www.microsoft.com/en-us/research/publication/stochastic-gradient-tricks/)
-
-This folder contains the material related to the first lecture.
+This lecture is a recap on the ordinary least squares. This folder contains the material related to the first lecture.
 - [`build/slides.pdf`](build/slides.pdf) corresponds the slides
 The rest is the (latex) source code used to generate the slides.

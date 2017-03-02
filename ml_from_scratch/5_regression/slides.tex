@@ -98,6 +98,8 @@ In our example:
 	\item The intercept is constantly equal to 1
 	\item The size of the house varies between $\approx$ 10 and $\approx$ 100
 \end{itemize}
+\vfill
+\pause
 Hence, there is a 10-100 difference in order of magnitude between the 2 variables, and the loss function looks like: 
 \begin{figure}
 \centering
@@ -114,6 +116,8 @@ and replace $x$ by $z$ in $J$. Hence, we get a loss function that looks like tha
 \centering
 \includegraphics[width=.6\linewidth]{images/normalized_loss.png}
 \end{figure}
+\vfill
+\pause
 Here, both variable have roughly the same importance. In general, it makes the optimization step much more stable and faster.
 \end{frame}
 
@@ -124,6 +128,8 @@ We also saw that the choice of the learning rate was \textbf{crucial}. It can be
 	\item \textbf{Too small} and the optimization can be \textbf{slow}
 	\item Properly tuned to have a \textbf{fast convergence}
 \end{itemize}
+\vfill
+\pause
 \begin{figure}
 \centering
 \includegraphics[width=.3\linewidth]{images/alpha_big.png}~
@@ -138,11 +144,16 @@ In stochastic gradient descent, we sometimes saw the loss function \textbf{going
 \centering
 \includegraphics[width=.8\linewidth]{images/sgd_constant_alpha.png}
 \end{figure}
+\vfill
+\pause
 This is because the $d$ loss functions $J^{(i)}(\theta)$ for $i = 1, 2, 3 \text{~or~} 4$ have different optimal $\theta$.
 \end{frame}
 
 \begin{frame}{Decreasing learning rate}
-One way to avoid it is to set a \textbf{decreasing learning rate} that would go to 0 when the number of the current iteration $i$ goes to infinity. Example$$\alpha_i = \dfrac{1}{i+1} \quad \text{or} \quad \alpha_i = \dfrac{1}{\sqrt{i+1}}$$
+One way to avoid it is to set a \textbf{decreasing learning rate} that would go to 0 when the number of the current iteration $i$ goes to infinity. Example
+$$\alpha_i = \dfrac{1}{i+1} \quad \text{or} \quad \alpha_i = \dfrac{1}{\sqrt{i+1}}$$
+\vfill
+\pause
 \begin{figure}
 \centering
 \includegraphics[width=.8\linewidth]{images/sgd_decreasing_alpha.png}
@@ -150,7 +161,7 @@ One way to avoid it is to set a \textbf{decreasing learning rate} that would go 
 \end{frame}
 
 \begin{frame}{Another way to track the evolution of the optimization}
-We can plot the loss function (in 2D) and show where $\theta$ is at each iteration. Example with the standard gradient descent:
+We can plot the loss function (in 2D) and show where $\theta$ is at each iteration. Example with the \textbf{standard gradient descent}:
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{images/theta_evolution_gd.png}
@@ -158,7 +169,7 @@ We can plot the loss function (in 2D) and show where $\theta$ is at each iterati
 \end{frame}
 
 \begin{frame}{Another way to track the evolution of the optimization}
-Example with the stochastic gradient descent with constant learning rate:
+Example with the \textbf{stochastic gradient descent with constant learning rate}:
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{images/theta_evolution_sgd_constant_alpha.png}
@@ -166,7 +177,7 @@ Example with the stochastic gradient descent with constant learning rate:
 \end{frame}
 
 \begin{frame}{Another way to track the evolution of the optimization}
-Example with the stochastic gradient descent with decreasing learning rate:
+Example with \textbf{the stochastic gradient descent with decreasing learning rate}:
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{images/theta_evolution_sgd_decreasing_alpha.png}
@@ -193,8 +204,7 @@ If we look at the regression model we've trained, it looks like that \ldots
 This means we are trying too hard to fit the outlier. 
 \pause
 \vfill
-This phenomenon is called \textbf{overfitting}. In this case, we generally notice some of the coefficients are very big. Hence, a way to avoid overfitting is to penalize too big coefficients. This can be 
-
+This phenomenon is called \textbf{overfitting}. In this case, we generally notice some of the coefficients are very big. Hence, a way to avoid overfitting is to penalize too big coefficients. This process is often called \textbf{regularization} and aims at making models better on unseen data.
 \end{frame}
 
 \begin{frame}{Conclusion and next session}
@@ -212,6 +222,9 @@ What's next?
 	\item Implementation of more sophisticated models
 	\item Extension to classification
 \end{itemize}
+\pause
+\vfill
+Please check the lecture 4 repository on GitHub by next time.
 \end{frame}
 
 \begin{frame}

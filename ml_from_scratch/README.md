@@ -9,3 +9,4 @@ Outline of the course:
 - [`2_optimization`](2_optimization): Optimization
 - [`3_least-squares`](3_least-squares): An implementation of ordinary least squares
 - [`4_least-squares_continued`](4_least-squares_continued): The continuation of the previous lab session
+- [`5_regression`](5_regression): A recap of the least-squares implementation

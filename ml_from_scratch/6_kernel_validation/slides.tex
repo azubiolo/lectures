@@ -13,12 +13,14 @@
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{bbm}
+\usepackage{bm}
 
 \newcommand{\1}[1]{\mathbbm{1}\left[#1\right]}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\yi}{y^{(i)}}
 \newcommand{\yhat}{\hat{y}}
 \newcommand{\yhati}{\hat{y}^{(i)}}
+\newcommand{\bx}{\bm{x}}
 
 \title{Machine learning from scratch}
 \subtitle{Lecture 6: Non-linear models, parameter selection}
@@ -46,7 +48,7 @@ This lecture will go a bit further by introducing:
 
 \begin{frame}
 	\center
-	\huge{More complex models}
+	\huge{Regularizing models}
 \end{frame}
 
 \begin{frame}{Outliers and overfitting}
@@ -63,7 +65,7 @@ Recall from previous course: Outliers can ruin the trained model.
 When this happens, we usually notice that one of the weight is big (in this case, $\theta_1$).
 \pause
 \vfill
-How to avoid that? \pause By penalizing big weights in the model.
+How to avoid that? \pause By \textbf{penalizing big weights} in the model.
 \pause
 \vfill 
 Formally, this consists in rewriting the cost function $J(\theta)$. Initially, we had 
@@ -89,12 +91,13 @@ J(\theta) = L(\theta) + \lambda R(\theta)
 \end{equation*}
 where 
 \begin{itemize}
-	\item $L$ is the loss term
-	\item $R$ is the regularization term
+	\item $L$ is the \textbf{loss term}
+	\item $R$ is the \textbf{regularization term}
+	\item $\lambda$ is the \textbf{regularization parameter}
 \end{itemize}
 \pause
 \vfill
-A commonly used regularization term $R$ is often the squared $\ell_2$ norm given by
+A commonly used regularization term is often the squared $\ell_2$ norm, given by:
 \begin{equation*}
 R(\theta) = \norm{\theta}_2^2 = \sum_{j = 1}^d \theta_j^2
 \end{equation*}
@@ -107,7 +110,115 @@ J(\theta) = L(\theta) + \lambda R(\theta)
 \end{equation*}
 \vfill
 \pause
-Now, we have to work
+This is the new function we have to \textbf{minimize}. Once again, we can use a \textbf{gradient descent} algorithm. This means we need to \textbf{compute the gradient}. By linearity of the gradient operator, we have:
+\begin{equation*}
+\nabla J(\theta) = \nabla L(\theta) + \lambda \nabla R(\theta)
+\end{equation*}
+\pause
+We already know $\nabla L(\theta)$, so we just need to find $\nabla R(\theta)$ in order to have $\nabla J(\theta)$. 
+\vfill
+\pause
+\textbf{Exercice}: Recall
+\begin{equation*}
+R(\theta) = \norm{\theta}_2^2 = \sum_{j = 1}^d \theta_j^2
+\end{equation*}
+What is $\nabla R(\theta)$?
+\end{frame}
+
+\begin{frame}{$\ell_2$-regularized OLS}
+\textbf{Hint}: Recall the definition of the gradient:
+\begin{equation*}
+\nabla R(\theta) = \left[ \dfrac{\partial}{\partial \theta_1} R(\theta), \dots, \dfrac{\partial}{\partial \theta_d} R(\theta) \right]
+\end{equation*}
+\vfill
+\pause
+\textbf{Solution}: 
+
+\begin{equation*}
+\begin{split}
+\dfrac{\partial}{\partial \theta_k} R(\theta) &= \dfrac{\partial}{\partial \theta_k} \sum_{j = 1}^d \theta_j^2 \\
+&= \sum_{j = 1}^d \dfrac{\partial}{\partial \theta_k} \theta_j^2 \\
+&= 2 \theta_j
+\end{split}
+\end{equation*}
+\textbf{Conclusion}:
+\begin{equation*}
+\nabla R(\theta) = \left[ 2\theta_1, \dots, 2\theta_d \right]
+\end{equation*}
+\end{frame}
+
+\begin{frame}{$\ell_2$-regularized OLS}
+\textbf{Question}: Given
+\begin{equation*}
+\nabla R(\theta) = \left[ 2\theta_1, \dots, 2\theta_d \right]
+\end{equation*}
+What is gradient descent update rule?
+\pause
+\vfill
+\textbf{Hint}: Recall the gradient descent update rule:
+\begin{equation*}
+\theta_k := \theta_k - \alpha \dfrac{\partial}{\partial \theta_k} J(\theta)
+\end{equation*}
+
+\textbf{Solution}: We have 
+\begin{equation*}
+\dfrac{\partial}{\partial \theta_k} L(\theta) = \left( y - h\left(\bx\right)\right) x_k \qquad \text{and} \qquad
+\dfrac{\partial}{\partial \theta_k} R(\theta) = 2\theta_k
+\end{equation*}
+so
+\begin{equation*}
+\theta_k := \theta_k - \alpha (\left( y - h\left(\bx\right)\right) x_k - 2 \lambda \theta_k)
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+	\center
+	\huge{More sophisticated models}
+\end{frame}
+
+\begin{frame}{Non-linearity}
+We might want to apply OLS to this data:
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{images/underfitting.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Non-linearity}
+We'd rather try to fit \textbf{a polynomial} on the data:
+\begin{equation*}
+\yhat = \theta_0 + \theta_1 x + \theta_2 x^2 + \dots + \theta_d x^d = \sum_{k = 0}^d \theta_d x^d 
+\end{equation*}
+\pause
+\vfill
+Se need to find $\theta_0, \theta_1, \dots, \theta_d$, which can be achieved by defining a new feature vector $\phi(x) = [1, x, x^2, \dots, x^d]$ and define the prediction model
+\begin{equation*}
+\yhat = \theta^T h(\phi(x)) = \sum_{k = 0}^d \theta_d x^d 
+\end{equation*}
+\pause
+\vfill
+OLS can train $\theta$ and we have a \textbf{polynomial model}. The trick is to apply a \textbf{non-linearity mapping} $\phi$.
+\end{frame}
+
+\begin{frame}{Non-linearity}
+\textbf{Problem}: We would need to find an appropriate value for the degree $d$, because:
+\vfill
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{images/over_under_fitting.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Hyperparameters}
+This is a \textbf{more general problem}: \textbf{Tuning hyperparameters}. The current version of OLS we have has several parameters:
+\begin{itemize}
+	\item The regularization parameter $\lambda$
+	\item The kernel degree $d$
+	\item The learning rate $\alpha$
+\end{itemize}
+\vfill
+\pause
+As we've seen, all these 3 parameters can have a \textbf{dramatic impact} on the quality of our prediction model! Hence, we need to \textbf{tune them} properly.
 \end{frame}
 
 \begin{frame}

@@ -40,6 +40,7 @@ Last time, we reviewed the main ideas behind OLS
 \pause
 This lecture will go a bit further by introducing:
 \begin{itemize}
+	\item Regularization
 	\item Non linear models (polynomial kernels)
 	\item Model evaluation
 	\item Parameter selection
@@ -97,7 +98,7 @@ where
 \end{itemize}
 \pause
 \vfill
-A commonly used regularization term is often the squared $\ell_2$ norm, given by:
+A commonly used regularization term is often the squared $\ell_2$-norm, given by:
 \begin{equation*}
 R(\theta) = \norm{\theta}_2^2 = \sum_{j = 1}^d \theta_j^2
 \end{equation*}

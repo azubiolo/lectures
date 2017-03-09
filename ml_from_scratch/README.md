@@ -10,3 +10,4 @@ Outline of the course:
 - [`3_least-squares`](3_least-squares): An implementation of ordinary least squares
 - [`4_least-squares_continued`](4_least-squares_continued): The continuation of the previous lab session
 - [`5_regression`](5_regression): A recap of the least-squares implementation
+- [`6_kernel_validation`](6_kernel_validation): An extension to more sophisticated models and validation for parameter selection

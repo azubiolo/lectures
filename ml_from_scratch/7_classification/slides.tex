@@ -1,0 +1,83 @@
+\documentclass{beamer}
+%\documentclass[aspectratio=169]{beamer}
+%
+\mode<presentation>
+{
+  \usetheme{default}      
+  \usecolortheme{default}
+  \usefonttheme{default} 
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{bbm}
+\usepackage{bm}
+
+\newcommand{\1}[1]{\mathbbm{1}\left[#1\right]}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\yi}{y^{(i)}}
+\newcommand{\yhat}{\hat{y}}
+\newcommand{\yhati}{\hat{y}^{(i)}}
+\newcommand{\bx}{\bm{x}}
+
+\title{Machine learning from scratch}
+\subtitle{Lecture 7: Classification}
+\author{Alexis Zubiolo\newline\texttt{alexis.zubiolo@gmail.com}}
+\institute{Data Science Team Lead @ Adcash}
+\date{March 16, 2017}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Extension to multiclass classification}
+\vfill
+What we have seen so far works for \textit{binary classification} (2 classes). What if we have \textbf{3 classes or more}?
+\vfill
+\pause 
+Several possible extensions. Some of the most popular ones:
+\begin{itemize}
+	\item One against one classification
+	\item One against all classification
+\end{itemize}
+\vfill
+\textbf{Note}: These strategies apply to any binary classifier (including SVMs).
+\vfill
+\end{frame}
+%
+\begin{frame}{One against one classification}
+\textbf{Idea}: 
+\begin{itemize}
+	\item Compute a classifier \textbf{for all pairs} of classes.
+	\item \textbf{Apply all these classifiers} to the new point. Store the predicted classes.
+	\item \textbf{Majority vote}: Return the class with the highest number of votes
+\end{itemize}
+
+\end{frame}
+%
+\begin{frame}{One against all classification}
+\vfill
+\textbf{Note}: It is also called \textit{one against rest classification}.
+\vfill
+\textbf{Idea}: For each class, split the set of classes into two meta classes
+\begin{itemize}
+	\item The considered class
+	\item The union of all the other classes
+\end{itemize}
+and compute a classifier for all these possibilities.
+Apply all these classifiers to a (new) given point.
+\vfill
+\textbf{Final decision} based on the value of $\theta^T x$.
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\Huge{Thank you! Questions?}
+\end{center}
+\end{frame}
+
+\end{document}

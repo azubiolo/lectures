@@ -76,14 +76,14 @@ where:
 	\item $\Delta$ is a \textbf{hyper-parameter} that quantifies by how much we want $s_y$ to be bigger than $s_j$ for $j \neq y$
 \end{itemize}
 \pv
-This loss has to be computed for all the classes other than the actual class $y$. In the end, the total loss for the sample $(\bx, y)$ is the sum of the loss for all the $j \neq y$:
+This loss has to be computed for all the classes \textbf{other than the actual class }$y$. In the end, the total loss for the sample $(\bx, y)$ is the sum of the loss for all the $j \neq y$:
 \begin{equation*}
 L = \sum_{j \neq y} \ell(s_j, s_y) = \sum_{j \neq y} \max(0, s_j - s_y + \Delta)
 \end{equation*}
 \end{frame}
 
 \begin{frame}{Illustration on a simple example}
-\textbf{Example}: Suppose we have 3 classes (1, 2 and 3). We get a training sample $(\bx, y)$ withing the first class (that is, $y = 0$). We have a SVM algorithm with hyperparameter $\Delta = 10$ that returns scores of 13 for class 0, −7 for class 1, and 11 for class 2. 
+\textbf{Example}: Suppose we have 3 classes (1, 2 and 3). We get a training sample $(\bx, y)$ within the first class (that is, $y = 0$). We have an SVM algorithm with hyperparameter $\Delta = 10$ that returns scores of 13 for class 0, −7 for class 1, and 11 for class 2. 
 
 \textbf{Question}: What is the total loss for this sample?
 \pv
@@ -122,7 +122,7 @@ As for regression tasks, \textbf{outliers} can have a dramatic impact on the mod
 R(\theta_1, \theta_2, \dots, \theta_k) = \sum_{j = 1}^k \norm{\theta_j}_2^2
 \end{equation*}
 \pv
-We can do the same for the 
+We can do the same for the SVM problem:
 \begin{equation*}
 J(\theta_1, \theta_2, \dots, \theta_k) 
 	= \sum_{i = 1}^n \sum_{j \neq y_i} 
@@ -139,9 +139,9 @@ where
 \begin{frame}{Optimization}
 We have defined a cost function $J$ we would like to minimize. Again, we can apply an algorithm like gradient descent to find its optimal value. For this, we need to compute $J$'s \textbf{gradients}.
 \pv
-In this case, there will be \textbf{several gradients} (1 per class because we have 1 $\theta$ vector per class). We will note $\nabla_{\theta_p}J$ the gradient with respect to $\theta_p$.
+In this case, there will be \textbf{several gradients} (1 per class because we have 1 $\theta_j$ vector per class). We will note $\nabla_{\theta_j}J$ the gradient with respect to $\theta_j$.
 \pv
-Due to the gradient linearity, we can compute the gradient of each term separately. Hence, we need to compute:
+Due to the gradient linearity, we can compute the gradient of each component \textbf{separately}. Hence, we need to compute:
 \begin{itemize}
 	\item $L$'s gradients
 	\item $R$'s gradients
@@ -153,7 +153,9 @@ Due to the gradient linearity, we can compute the gradient of each term separate
 \begin{equation*}
 L = \sum_{j \neq y} \max(0, \theta_j^T\bx - \theta_{y}^T\bx + \Delta)
 \end{equation*}
+\pv
 There are 2 different cases:
+\pv
 \begin{itemize}
 	\item $j \neq y$:
 	\begin{equation*}
@@ -163,6 +165,7 @@ There are 2 different cases:
 	0 \quad \text{otherwise.}
 	\end{cases}
 	\end{equation*}
+\pv
 	\item $j = y$:
 	\begin{equation*}
 	\nabla_{\theta_j} L = p \bx

@@ -21,6 +21,10 @@
 \newcommand{\yhat}{\hat{y}}
 \newcommand{\yhati}{\hat{y}^{(i)}}
 \newcommand{\bx}{\bm{x}}
+\newcommand{\bxi}{\bx^{(i)}}
+\newcommand{\pv}{\pause\vfill}
+\newcommand{\p}{\pause}
+\newcommand{\f}{\vfill}
 
 \title{Machine learning from scratch}
 \subtitle{Lecture 7: Classification}
@@ -34,44 +38,164 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Extension to multiclass classification}
-\vfill
-What we have seen so far works for \textit{binary classification} (2 classes). What if we have \textbf{3 classes or more}?
-\vfill
-\pause 
-Several possible extensions. Some of the most popular ones:
+\begin{frame}{Introduction}
+\textbf{Classification} and \textbf{regression} are the 2 main aspects of supervised machine learning.
+\pv
+\textbf{Reminder}: In classification, $y$ takes \textbf{discrete values}: \textbf{1 value per class}. Typically, we note $y \in \{1, 2, \dots, k \}$ where $k$ is the number of classes.
+\pv
+\textbf{Example}: 
 \begin{itemize}
-	\item One against one classification
-	\item One against all classification
+	\item For digit recognition, there are \textbf{10 classes} (one per digit: 0, 1, 2, \ldots, 9)
+	\item For letter recognition, the number of classes depends on the alphabet (e.g. 26 for the latin alphabet).
 \end{itemize}
-\vfill
-\textbf{Note}: These strategies apply to any binary classifier (including SVMs).
-\vfill
 \end{frame}
-%
-\begin{frame}{One against one classification}
-\textbf{Idea}: 
-\begin{itemize}
-	\item Compute a classifier \textbf{for all pairs} of classes.
-	\item \textbf{Apply all these classifiers} to the new point. Store the predicted classes.
-	\item \textbf{Majority vote}: Return the class with the highest number of votes
-\end{itemize}
 
+\begin{frame}{Support Vector Machines}
+\textbf{Support Vector Machines} (SVM) is one of the most popular classification algorithms. What we will see in this course is just one way to approach it. Actually, it can be solved/approached in many (equivalent) ways.
+\pv
+As usual, we will define a dataset $\left\{ (\bxi, \yi), i =1, \dots, n\right\}$. Here, $\yi \in \{ 1, \dots, k\}$ is the class.
+\pv
+One way to formulate the SVM model is by defining \textbf{one linear models per class}: $\theta_1, \theta_2, \dots, \theta_k$. The goal is to have $\theta_j^T x$ measure the confidence of $\bx$ having $j$ as a label. This way, the predicted class of $\bx$ will be the $j$ that maximizes $\theta^T \bx$.
 \end{frame}
-%
-\begin{frame}{One against all classification}
-\vfill
-\textbf{Note}: It is also called \textit{one against rest classification}.
-\vfill
-\textbf{Idea}: For each class, split the set of classes into two meta classes
+
+\begin{frame}{Support Vector Machines}
+Let us consider a single sample $(\bx, y)$. The SVM algorithm will define weights $\theta_1, \theta_2, \dots, \theta_k$ for each class.
+\pv
+Hence, we can define scores $s_j = \theta_j^T \bx$ for each class $j$. If the SVM algorithm makes no mistake on the sample $(\bx, y)$, $s_y$ \textbf{should be the highest value}.
+\end{frame}
+
+\begin{frame}{Hinge loss}
+SVM relies on the \textbf{hinge loss}, that is
+\begin{equation*}
+\ell(s_j, s_y) = \max(0, s_j - s_y + \Delta)
+\end{equation*}
+where:
 \begin{itemize}
-	\item The considered class
-	\item The union of all the other classes
+	\item $s_j$ is the score for some class $j \neq y$
+	\item $s_y$ is the score for the true class $y$
+	\item $\Delta$ is a \textbf{hyper-parameter} that quantifies by how much we want $s_y$ to be bigger than $s_j$ for $j \neq y$
 \end{itemize}
-and compute a classifier for all these possibilities.
-Apply all these classifiers to a (new) given point.
-\vfill
-\textbf{Final decision} based on the value of $\theta^T x$.
+\pv
+This loss has to be computed for all the classes other than the actual class $y$. In the end, the total loss for the sample $(\bx, y)$ is the sum of the loss for all the $j \neq y$:
+\begin{equation*}
+L = \sum_{j \neq y} \ell(s_j, s_y) = \sum_{j \neq y} \max(0, s_j - s_y + \Delta)
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Illustration on a simple example}
+\textbf{Example}: Suppose we have 3 classes (1, 2 and 3). We get a training sample $(\bx, y)$ withing the first class (that is, $y = 0$). We have a SVM algorithm with hyperparameter $\Delta = 10$ that returns scores of 13 for class 0, −7 for class 1, and 11 for class 2. 
+
+\textbf{Question}: What is the total loss for this sample?
+\pv
+\textbf{Solution}: 
+\begin{equation*}
+\begin{split}
+L 	&=  \ell(s_1, s_0) + \ell(s_2, s_0) \\
+	&= \max(0,−7−13+10) + \max(0,11−13+10) \\
+	&= \max(0, -10) + \max(0, +8) \\
+	&= 0 + 8 \\
+	&= 8
+\end{split}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Optimization problem formulation}
+We saw that for a single sample $(\bx, y)$, the training loss is:
+\begin{equation*}
+L = \sum_{j \neq y} \ell(s_j, s_y) = \sum_{j \neq y} \max(0, s_j - s_y + \Delta)
+\end{equation*}
+where $s_j = \theta_j^T \bx$ and $s_y = \theta_y^T \bx$.
+\pv
+As for the linear regression, when given a training set $\left\{ (\bxi, \yi), i =1, \dots, n\right\}$, we just need to sum the losses for all the training samples:
+\begin{equation*}
+\begin{split}
+J(\theta_1, \theta_2, \dots, \theta_k) 
+	&= \sum_{i = 1}^n L_i \\
+	&= \sum_{i = 1}^n \sum_{j \neq y_i} \max(0, \theta_j^T\bxi - \theta_{y_i}^T\bxi + \Delta)
+\end{split}
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Overfitting and regularization}
+As for regression tasks, \textbf{outliers} can have a dramatic impact on the model we train. We saw that it usually resulted in high weights and that \textbf{adding a regularization term} could help.
+\begin{equation*}
+R(\theta_1, \theta_2, \dots, \theta_k) = \sum_{j = 1}^k \norm{\theta_j}_2^2
+\end{equation*}
+\pv
+We can do the same for the 
+\begin{equation*}
+J(\theta_1, \theta_2, \dots, \theta_k) 
+	= \sum_{i = 1}^n \sum_{j \neq y_i} 
+	\max(0, \theta_j^T\bxi - \theta_{y_i}^T\bxi + \Delta)
+	+ \lambda \sum_{j = 1}^k \norm{\theta_j}_2^2
+\end{equation*}
+where
+\begin{equation*}
+\norm{\theta_j}_2^2 = \sum_{m = 1}^d \theta_{j,m}^2
+\end{equation*}
+($\theta_j$ is a vector, and $\theta_{j,m}$ its $m$th value.)
+\end{frame}
+
+\begin{frame}{Optimization}
+We have defined a cost function $J$ we would like to minimize. Again, we can apply an algorithm like gradient descent to find its optimal value. For this, we need to compute $J$'s \textbf{gradients}.
+\pv
+In this case, there will be \textbf{several gradients} (1 per class because we have 1 $\theta$ vector per class). We will note $\nabla_{\theta_p}J$ the gradient with respect to $\theta_p$.
+\pv
+Due to the gradient linearity, we can compute the gradient of each term separately. Hence, we need to compute:
+\begin{itemize}
+	\item $L$'s gradients
+	\item $R$'s gradients
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$L$'s gradients}
+\textbf{Reminder}: For a sample $(\bx, y)$, $L$ is given by:
+\begin{equation*}
+L = \sum_{j \neq y} \max(0, \theta_j^T\bx - \theta_{y}^T\bx + \Delta)
+\end{equation*}
+There are 2 different cases:
+\begin{itemize}
+	\item $j \neq y$:
+	\begin{equation*}
+	\nabla_{\theta_j} L = 
+	\begin{cases}
+	\bx \quad \text{if} \quad \theta_j^T\bx - \theta_{y}^T\bx + \Delta > 0 \\
+	0 \quad \text{otherwise.}
+	\end{cases}
+	\end{equation*}
+	\item $j = y$:
+	\begin{equation*}
+	\nabla_{\theta_j} L = p \bx
+	\end{equation*}
+	where $p$ is the \textbf{number of times the desired margin is not satisfied}, that is the number of $j \neq y$ such that 
+	$$\theta_j^T\bx - \theta_{y}^T\bx + \Delta > 0$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$R$'s gradients}
+\textbf{Reminder}: $R$ is given by:
+\begin{equation*}
+R(\theta_1, \theta_2, \dots, \theta_k) = \sum_{j = 1}^k \norm{\theta_j}_2^2
+\end{equation*}
+\textbf{Question}: What is $\nabla_{\theta_j} R$?
+\pv
+\textbf{Answer}:
+\begin{equation*}
+\nabla_{\theta_j} R = 2\theta_j
+\end{equation*}
+\pv
+\textbf{Conclusion}: We have the analytic expression of the gradients of $L$ and $R$ and are able to apply the gradient descent (stochastic or batch) to it.
+\end{frame}
+
+\begin{frame}{Conclusion}
+In this lecture, we've seen Classification models with the example of SVMs:
+\begin{itemize}
+	\item How to define the problem
+	\item How to compute the gradient
+	\item How to train an SVM model for multiclass classification
+\end{itemize}
+\pv
+Next time, we'll go a bit further and have a \textbf{practical session} about classification.
 \end{frame}
 
 \begin{frame}

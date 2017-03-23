@@ -51,7 +51,7 @@
 \end{frame}
 
 \begin{frame}{Support Vector Machines}
-\textbf{Support Vector Machines} (SVM) is one of the most popular classification algorithms. What we will see in this course is just one way to approach it. Actually, it can be solved/approached in many (equivalent) ways.
+\textbf{Support Vector Machines} (SVM) is one of the most popular classification algorithms. What we will see in this course is just one way to approach it. Actually, it can be solved/approached in several (yet equivalent) ways.
 \pv
 As usual, we will define a dataset $\left\{ (\bxi, \yi), i =1, \dots, n\right\}$. Here, $\yi \in \{ 1, \dots, k\}$ is the class.
 \pv
@@ -83,14 +83,14 @@ L = \sum_{j \neq y} \ell(s_j, s_y) = \sum_{j \neq y} \max(0, s_j - s_y + \Delta)
 \end{frame}
 
 \begin{frame}{Illustration on a simple example}
-\textbf{Example}: Suppose we have 3 classes (1, 2 and 3). We get a training sample $(\bx, y)$ within the first class (that is, $y = 0$). We have an SVM algorithm with hyperparameter $\Delta = 10$ that returns scores of 13 for class 0, −7 for class 1, and 11 for class 2. 
+\textbf{Example}: Suppose we have 3 classes (1, 2 and 3). We get a training sample $(\bx, y)$ within the first class (that is, $y = 0$). We have an SVM algorithm with hyperparameter $\Delta = 10$ that returns scores of 13 for class 1, −7 for class 2, and 11 for class 3. 
 
 \textbf{Question}: What is the total loss for this sample?
 \pv
 \textbf{Solution}: 
 \begin{equation*}
 \begin{split}
-L 	&=  \ell(s_1, s_0) + \ell(s_2, s_0) \\
+L 	&=  \ell(s_2, s_1) + \ell(s_3, s_1) \\
 	&= \max(0,−7−13+10) + \max(0,11−13+10) \\
 	&= \max(0, -10) + \max(0, +8) \\
 	&= 0 + 8 \\

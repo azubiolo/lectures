@@ -12,3 +12,5 @@ Outline of the course:
 - [`5_regression`](5_regression): A recap of the least-squares implementation
 - [`6_kernel_validation`](6_kernel_validation): An extension to more sophisticated models and validation for parameter selection
 - [`7_classification`](7_classification): A transition to classification
+- [`8_svm_lab`](8_svm_lab): An implementation of support vector machines
+- [`9_conclusion`](9_conclusion): A conclusion with an overview of neural networks

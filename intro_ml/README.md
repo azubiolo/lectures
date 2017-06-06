@@ -1,6 +1,6 @@
 # Introduction to Machine Learning
 
-This folder contains all the material from the "Introduction to Machine Learning" course I am currently giving at IT Step Academy. 
+This folder contains all the material from the "Introduction to Machine Learning" course I gave at IT Step Academy (from 6th October to 8th December 2016). 
 
 This includes:
 - A general introduction to machine learning (lecture_1)
